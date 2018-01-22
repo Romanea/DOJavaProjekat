@@ -21,15 +21,15 @@ public class Point extends Shape implements Moveable{
 		this.x = x;
 		this.y = y;
 	}
-	public Point(int x, int y, String boja){
+	public Point(int x, int y, String color){
 		this(x, y);
-		setColor(boja);
+		setColor(color);
 	}	
 	
-	public Point(int x, int y, Color boja)
+	public Point(int x, int y, Color color)
 	{
 		this(x,y);
-		setBorderColor(boja);
+		setBorderColor(color);
 	}
 
 	public String toString()

@@ -21,8 +21,12 @@ public class ShapeModel {
 		return shapes.indexOf(s);
 	}
 	
-	public Shape get(int index) {
+	public Shape getShape(int index) {
 		return shapes.get(index);
+	}
+
+	public ArrayList<Shape> getShapes() {
+		return shapes;
 	}
 
 }
