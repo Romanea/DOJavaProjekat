@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import controller.CanvasController;
 import controller.MouseClickedObserver;
 import view.CanvasView;
+import view.OptionsView;
+import view.ToolsView;
 
 public class MainFrame extends JFrame {
 	/**
@@ -19,6 +21,8 @@ public class MainFrame extends JFrame {
 	private CanvasView view = new CanvasView();
 	private CanvasController controller;
 	private MouseClickedObserver observer;
+	private OptionsView optionsView = new OptionsView();
+	private ToolsView toolsView= new ToolsView();
 	
 	public MainFrame() {
 		view.addMouseListener(new MouseAdapter() {
@@ -28,7 +32,10 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
+		
 		getContentPane().add(view, BorderLayout.CENTER);
+		getContentPane().add(optionsView, BorderLayout.NORTH);
+		getContentPane().add(toolsView, BorderLayout.WEST);
 		view.setBackground(Color.WHITE);
 		
 	}
