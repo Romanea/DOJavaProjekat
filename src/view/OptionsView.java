@@ -12,6 +12,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -54,6 +55,11 @@ public class OptionsView extends JPanel{
 	@SuppressWarnings("deprecation")
 	public OptionsView()
 	{
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0,0,0,0};
 		gridBagLayout.rowHeights = new int[] { 0, 0 };
@@ -164,7 +170,10 @@ public class OptionsView extends JPanel{
 
 	}
 
-
+	public void setEnabled(boolean setEnabled)
+	{
+		//TODO implement
+	}
 
 	public JLabel getLblAdditionalOption1() {
 		return lblAdditionalOption1;

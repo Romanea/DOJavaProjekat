@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
+import javax.swing.UIManager;
 
 
 
@@ -33,7 +34,11 @@ public class ToolsView extends JPanel{
 	private GridBagConstraints gbc_info;
 
 	public ToolsView() {
-		
+		try {
+			UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
 		gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
@@ -103,6 +108,14 @@ public class ToolsView extends JPanel{
 
 	public JLabel getLblInfo() {
 		return lblInfo;
+	}
+
+	public JButton getBtnDelete() {
+		return btnDelete;
+	}
+
+	public JButton getBtnDeleteAll() {
+		return btnDeleteAll;
 	}
 	
 	

@@ -19,8 +19,8 @@ public class CanvasView extends JPanel {
 	}
 
 	@Override
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
+	public void paint(Graphics g) {
+		super.paint(g);
 		if (model != null) {
 			Iterator<Shape> it = model.getShapes().iterator();
 			while (it.hasNext()) {
@@ -28,6 +28,10 @@ public class CanvasView extends JPanel {
 			}
 
 		}
+	}
+
+	public ShapeModel getModel() {
+		return model;
 	}
 
 	public void setModel(ShapeModel model) {

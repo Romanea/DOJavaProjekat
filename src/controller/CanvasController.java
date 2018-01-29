@@ -1,35 +1,32 @@
 package controller;
 
-import java.awt.Color;
+
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JOptionPane;
+
+import shapes.Command;
 import shapes.Shape;
-import shapes.point.Point;
 import app.MainFrame;
 import model.ShapeModel;
 
-public class CanvasController implements MouseClickedObserver{
+public class CanvasController  {
 	private MainFrame frame;
 	private ShapeModel model;
+	private Command command;
 
 	public CanvasController(ShapeModel model, MainFrame frame ) {
 		this.frame = frame;
 		this.model = model;
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent e, Shape shape) {
-		model.add(shape);
-		frame.repaint();
 	
+	public void mousePressed(MouseEvent e, Shape shape) {
+		frame.getCommandController().generateAddCommand(shape, model).execute();
 		
 	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 	
 	
 
