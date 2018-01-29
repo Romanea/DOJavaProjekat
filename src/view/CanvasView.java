@@ -19,13 +19,13 @@ public class CanvasView extends JPanel {
 	}
 
 	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
 		if (model != null) {
 			Iterator<Shape> it = model.getShapes().iterator();
-			while (it.hasNext()) 
+			while (it.hasNext()) {
 				it.next().draw(g);
-			repaint();
+			}
 
 		}
 	}

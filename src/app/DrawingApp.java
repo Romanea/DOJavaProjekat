@@ -13,10 +13,8 @@ public class DrawingApp {
 		frame.getView().setModel(model);
 		CanvasController controller = new CanvasController(model, frame);
 	
-		frame.setMouseClickedObserver(controller);
-		frame.setSize(600,400);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		frame.setCanvasController(controller);
+	
 		}
 
 	
