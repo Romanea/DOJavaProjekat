@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
+import hexagon.Hexagon;
 import shapes.*;
 import shapes.circle.Circle;
 import shapes.hexagon.HexagonAdapter;
@@ -110,22 +111,27 @@ public class OptionsController {
 			;break;
 		
 		case "Hexagon":{
-			/*try {
-				/*if(Integer.parseInt(optionsView.getTxtAdditionalOption1().getText())>0
+			try {
+				if(Integer.parseInt(optionsView.getTxtAdditionalOption1().getText())>0
 						&& Integer.parseInt(optionsView.getTxtAdditionalOption2().getText())>0)
 				{
-					shape = new HexagonAdapter(new Point(e.getX(), e.getY()),
-							Integer.parseInt(optionsView.getTxtAdditionalOption1().getText()),
-							optionsView.getBtnBorderColorPicker().getSelectedColor(),
-							optionsView.getBtnInnerColorPicker().getSelectedColor()
-							);
+					Hexagon hexagon = new Hexagon(0, 0, 0);
+					hexagon.setR(Integer.parseInt(optionsView.getTxtAdditionalOption1().getText()));
+					hexagon.setAreaColor(optionsView.getBtnInnerColorPicker().getSelectedColor());
+					hexagon.setBorderColor(optionsView.getBtnBorderColorPicker().getSelectedColor());
+					hexagon.setX(e.getX());
+					hexagon.setY(e.getY());
+					
+					shape = new HexagonAdapter(hexagon);
+					//System.out.println(shape.toString());
+					
 				}
 				else
 					JOptionPane.showMessageDialog(null, "Invalid input!");
 					
 			} catch (NumberFormatException e2) {
 				JOptionPane.showMessageDialog(null, "R length has to be a number.");
-			}*/
+			}
 		};break;
 		}
 		return shape;

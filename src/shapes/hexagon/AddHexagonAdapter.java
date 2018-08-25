@@ -14,7 +14,9 @@ public class AddHexagonAdapter implements Command {
 	}
 	
 	public void execute() {
+		
 		this.model.add(hexagon);
+		System.out.println(this.model);
 		
 	}
 

@@ -31,7 +31,14 @@ public class ToolsController {
 			{
 				if(frame.getView().getModel().getShape(i).contains(e.getX(), e.getY()))
 				{
-					frame.getView().getModel().getShape(i).setSelected(true);
+					if(frame.getView().getModel().getShape(i).isSelected())
+					{
+						frame.getView().getModel().getShape(i).setSelected(false);
+					}
+					else
+					{
+						frame.getView().getModel().getShape(i).setSelected(true);
+					}
 					frame.getOptionsView().setEnabled(false);
 					toolsView.getBtnDelete().setEnabled(true);
 					toolsView.getBtnDelete().setEnabled(true);
