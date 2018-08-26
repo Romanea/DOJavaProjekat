@@ -19,7 +19,7 @@ public class ToolsController {
 	}
 
 
-	public void handleSelection(MouseEvent e) {
+	public void handleSelection(MouseEvent arg0) {
 		if( frame.getView().getModel().getShapes().size() ==0 && toolsView.getTglbtnSelect().isSelected())
 		{
 			JOptionPane.showMessageDialog(null, "No elements to select!");
@@ -29,7 +29,7 @@ public class ToolsController {
 		{
 			for(int i = frame.getView().getModel().getShapes().size()-1;i>=0;i--)
 			{
-				if(frame.getView().getModel().getShape(i).contains(e.getX(), e.getY()))
+				if(frame.getView().getModel().getShape(i).contains(arg0.getX(), arg0.getY()))
 				{
 					if(frame.getView().getModel().getShape(i).isSelected())
 					{
@@ -39,12 +39,11 @@ public class ToolsController {
 					{
 						frame.getView().getModel().getShape(i).setSelected(true);
 					}
-					frame.getOptionsView().setEnabled(false);
-					toolsView.getBtnDelete().setEnabled(true);
-					toolsView.getBtnDelete().setEnabled(true);
-					toolsView.getBtnModify().setEnabled(true);
+					
+					
 					frame.getView().repaint();
 					break;
+					
 				}
 			}
 		}
@@ -52,14 +51,58 @@ public class ToolsController {
 	}
 
 
-	public void handeDeselection() {
+	public void handeDeselection(){
+		
 		Iterator<Shape> it = frame.getView().getModel().getShapes().iterator();
 		while (it.hasNext()) it.next().setSelected(false);
-		frame.getOptionsView().setEnabled(true);
-		toolsView.getBtnDelete().setEnabled(true);
-		toolsView.getBtnModify().setEnabled(true);
 		frame.getView().repaint();
 		
+	}
+	
+	public void handleDelete() {
+		
+		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
+			
+			if (frame.getView().getModel().getShapes().get(i).isSelected()) {
+				frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel()).execute();
+			}
+			
+		}
+		frame.getView().repaint();
+	}
+	
+	public void handleDeleteAll() {
+		
+		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
+			frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel()).execute();
+				
+		}
+		frame.getView().repaint();
+	}
+	
+	public void handleModify() {
+		frame.getView().getModel().countSelectedShapes();
+		if (frame.getView().getModel().countSelectedShapes()!=0) {
+			if (frame.getView().getModel().countSelectedShapes() == 1) {
+
+				// TODO implement update
+				for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
+					
+					if (frame.getView().getModel().getShapes().get(i).isSelected()) {
+						frame.getCommandController().generateUpdateCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel()).execute();
+					}
+					
+				}
+				frame.getView().repaint();
+				
+			} else {
+				JOptionPane.showMessageDialog(null, "More than one shape are selected!", "Error!!",
+						JOptionPane.ERROR_MESSAGE);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
+		}
+
 	}
 	
 	

@@ -1,10 +1,13 @@
 package shapes.circle;
 
+
+
 import shapes.Command;
+import shapes.point.Point;
 
 public class UpdateCircle implements Command{
 
-	private Circle oldState = new Circle();
+	private Circle oldState = new Circle(new Point(0,0), 0);
 	private Circle original;
 	private Circle newState;
 	
@@ -17,6 +20,10 @@ public class UpdateCircle implements Command{
 	@Override
 	public void execute() {
 		
+		System.out.println(oldState.toString());
+		System.out.println(original.toString());
+		System.out.println(newState.toString());
+
 		oldState.getCenter().setX(original.getCenter().getX());
 		oldState.getCenter().setY(original.getCenter().getY());
 		oldState.setR(original.getR());

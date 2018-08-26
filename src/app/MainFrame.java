@@ -66,17 +66,23 @@ public class MainFrame extends JFrame {
 	private void events()
 	{
 		selectionMode=false;
+		
+		// CANVAS DRAWING
 
 		view.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent arg0) {
-				if(!selectionMode)
-				{
+				if(!selectionMode){
 				canvasController.mousePressed(arg0, optionsController.getShapeOptions(arg0));
 				repaint();
 				}
+				else {
+					toolsController.handleSelection(arg0);
+				}
 			}
 		});
+		
+		//SHAPE PICKER
 		
 		optionsView.getCmbShapePicker().addActionListener(new ActionListener() {
 					@Override
@@ -85,6 +91,8 @@ public class MainFrame extends JFrame {
 					}
 				});
 		
+		//SELECT
+		
 		toolsView.getTglbtnSelect().addItemListener(new ItemListener() {
 			
 			@Override
@@ -92,20 +100,23 @@ public class MainFrame extends JFrame {
 				if( ie.getStateChange() == ItemEvent.SELECTED)
 				{
 					selectionMode = true;
+					//toolsController.handleSelection();
 					toolsView.getLblInfo().setText("Mode: Selection");
+					getOptionsView().setEnabled(false);
 					toolsView.getBtnDeleteAll().setEnabled(false);
-						view.addMouseListener(new MouseAdapter() {
-							@Override
-							public void mousePressed(MouseEvent arg0) {
-								if(selectionMode)
-								toolsController.handleSelection(arg0);
-							}
-						});
-					}
+					toolsView.getBtnDelete().setEnabled(true);
+					toolsView.getBtnModify().setEnabled(true);
+					
+				}
 				else if( ie.getStateChange() == ItemEvent.DESELECTED)
 				{
 					toolsController.handeDeselection();
 					toolsView.getLblInfo().setText("Mode: Drawing");
+					getOptionsView().setEnabled(true);
+					toolsView.getBtnDelete().setEnabled(false);
+					toolsView.getBtnModify().setEnabled(false);
+					toolsView.getBtnDeleteAll().setEnabled(true);
+
 					selectionMode = false;
 					
 				}
@@ -113,6 +124,40 @@ public class MainFrame extends JFrame {
 			}
 		});
 		
+		//MODIFY
+		toolsView.getBtnModify().addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				toolsController.handleModify();
+				
+			}
+			
+		});
+		
+		//DELETE
+		toolsView.getBtnDelete().addActionListener( new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				toolsController.handleDelete();
+				
+			}
+			
+		});
+		
+		//DELETE ALL
+				toolsView.getBtnDeleteAll().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						toolsController.handleDeleteAll();	
+					}
+					
+				});
 	}
 	
 	public CanvasView getView() {

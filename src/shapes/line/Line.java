@@ -89,6 +89,12 @@ public class Line extends Shape{
 		if(isSelected())
 			selected(g);
 	}
+	public void moveBy(int x, int y){
+		pStart.setX(pStart.getX()+x);
+		pStart.setY(pStart.getY()+y);
+		pEnd.setX(pEnd.getX()+x);
+		pEnd.setY(pEnd.getY()+y);
+	}
 
 	public int compareTo(Object o)
 	{

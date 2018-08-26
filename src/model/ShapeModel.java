@@ -7,6 +7,8 @@ import shapes.Shape;
 public class ShapeModel {
 
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
+	private ArrayList<Shape> selectedShapes = new ArrayList<>();
+
 	
 	
 	public void add(Shape s) {
@@ -27,6 +29,17 @@ public class ShapeModel {
 
 	public ArrayList<Shape> getShapes() {
 		return shapes;
+	}
+	
+	public int countSelectedShapes() {
+		selectedShapes.clear();
+		for (int i = shapes.size() - 1; i >= 0; i--) {
+			if (shapes.get(i).isSelected()) {
+				selectedShapes.add(shapes.get(i));
+			}
+		}
+		
+		return selectedShapes.size();
 	}
 
 }
