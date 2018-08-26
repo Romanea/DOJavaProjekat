@@ -25,12 +25,20 @@ public class ToolsView extends JPanel{
 	private JButton btnModify;
 	private JButton btnDelete;
 	private JButton btnDeleteAll;
+	private JButton btnBringToBack;
+	private JButton btnSendToFront;
+	private JButton btnBringToFront;
+	private JButton btnSendToBack;
 	private JLabel lblInfo;
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints gbc_select;
 	private GridBagConstraints gbc_modify;
 	private GridBagConstraints gbc_delete;
 	private GridBagConstraints gbc_deleteAll;
+	private GridBagConstraints gbc_bringToFront;
+	private GridBagConstraints gbc_bringToBack;
+	private GridBagConstraints gbc_sendToFront;
+	private GridBagConstraints gbc_sendToBack;
 	private GridBagConstraints gbc_info;
 
 	public ToolsView() {
@@ -43,7 +51,7 @@ public class ToolsView extends JPanel{
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		tglbtnSelect = new JToggleButton("Select");
@@ -90,12 +98,60 @@ public class ToolsView extends JPanel{
 		gbc_info = new GridBagConstraints();
 		gbc_info.insets = new Insets(0, 0, 0, 5);
 		gbc_info.gridx = 0;
-		gbc_info.gridy = 4;
+		gbc_info.gridy = 9;
 		add(lblInfo, gbc_info);
 		lblInfo.setText("Mode: Drawing");
 		
+		btnBringToFront = new JButton("Bring to front");
+		gbc_bringToFront = new GridBagConstraints();
+		gbc_bringToFront.fill = GridBagConstraints.HORIZONTAL;
+		gbc_bringToFront.insets = new Insets(0, 0, 0, 5);
+		gbc_bringToFront.gridx =0;
+		gbc_bringToFront.gridy =4;
+		add(btnBringToFront, gbc_bringToFront);
+		
+		btnBringToBack = new JButton("Bring to back");
+		gbc_bringToBack = new GridBagConstraints();
+		gbc_bringToBack.fill = GridBagConstraints.HORIZONTAL;
+		gbc_bringToBack.insets = new Insets(0, 0, 0, 5);
+		gbc_bringToBack.gridx =0;
+		gbc_bringToBack.gridy =5;
+		add(btnBringToBack, gbc_bringToBack);
+		
+		btnSendToFront = new JButton("Send to front");
+		gbc_sendToFront = new GridBagConstraints();
+		gbc_sendToFront.fill = GridBagConstraints.HORIZONTAL;
+		gbc_sendToFront.insets = new Insets(0, 0, 0, 5);
+		gbc_sendToFront.gridx =0;
+		gbc_sendToFront.gridy =6;
+		add(btnSendToFront, gbc_sendToFront);
+		
+		btnSendToBack = new JButton("Send to back");
+		gbc_sendToBack = new GridBagConstraints();
+		gbc_sendToBack.fill = GridBagConstraints.HORIZONTAL;
+		gbc_sendToBack.insets = new Insets(0, 0, 0, 5);
+		gbc_sendToBack.gridx =0;
+		gbc_sendToBack.gridy =7;
+		add(btnSendToBack, gbc_sendToBack);
+		
 	
 		
+	}
+
+	public JButton getBtnBringToBack() {
+		return btnBringToBack;
+	}
+
+	public JButton getBtnSendToFront() {
+		return btnSendToFront;
+	}
+
+	public JButton getBtnBringToFront() {
+		return btnBringToFront;
+	}
+
+	public JButton getBtnSendToBack() {
+		return btnSendToBack;
 	}
 
 	public JToggleButton getTglbtnSelect() {

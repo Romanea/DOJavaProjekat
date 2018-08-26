@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import app.MainFrame;
 import shapes.Shape;
 import view.ToolsView;
+import zcommand.*;
 
 public class ToolsController {
 
@@ -17,7 +18,8 @@ public class ToolsController {
 		this.toolsView = frame.getToolsView();
 		this.frame=frame;
 	}
-
+	
+	// SELECT
 
 	public void handleSelection(MouseEvent arg0) {
 		if( frame.getView().getModel().getShapes().size() ==0 && toolsView.getTglbtnSelect().isSelected())
@@ -51,6 +53,8 @@ public class ToolsController {
 	}
 
 
+	// DESELECT
+	
 	public void handeDeselection(){
 		
 		Iterator<Shape> it = frame.getView().getModel().getShapes().iterator();
@@ -58,6 +62,8 @@ public class ToolsController {
 		frame.getView().repaint();
 		
 	}
+	
+	//DELETE
 	
 	public void handleDelete() {
 		
@@ -70,6 +76,9 @@ public class ToolsController {
 		}
 		frame.getView().repaint();
 	}
+	
+	
+	//DELETE ALL
 	
 	public void handleDeleteAll() {
 		
@@ -104,6 +113,40 @@ public class ToolsController {
 		}
 
 	}
+	
+	
+	// BRING TO FRONT
+	
+	public void handleBringToFront() {
+		BringToFront cmd = new BringToFront(frame.getView().getModel());
+		cmd.execute();
+		frame.getView().repaint();
+	}
+			
+	// BRING TO BACK
+	
+	public void handleBringToBack() {
+		BringToBack cmd = new BringToBack(frame.getView().getModel());
+		cmd.execute();
+		frame.getView().repaint();
+	}
+			
+	// SEND TO FRONT
+	
+	public void handleSendToFront() {
+		ToFront cmd = new ToFront(frame.getView().getModel());
+		cmd.execute();
+		frame.getView().repaint();
+	}
+			
+	// SEND TO BACK
+	
+	public void handleSendToBack() {
+		ToBack cmd = new ToBack(frame.getView().getModel());
+		cmd.execute();
+		frame.getView().repaint();
+	}
+			
 	
 	
 	

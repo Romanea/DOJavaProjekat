@@ -1,10 +1,11 @@
 package shapes.line;
 
 import shapes.Command;
+import shapes.point.Point;
 
 public class UpdateLine implements Command{
 
-	private Line oldState = new Line();
+	private Line oldState = new Line(new Point(0,0), new Point(0,0));
 	private Line original;
 	private Line newState;
 	

@@ -111,7 +111,7 @@ public class MainFrame extends JFrame {
 				else if( ie.getStateChange() == ItemEvent.DESELECTED)
 				{
 					toolsController.handeDeselection();
-					toolsView.getLblInfo().setText("Mode: Drawing");
+					toolsView.getLblInfo().setText(" Mode:  Drawing");
 					getOptionsView().setEnabled(true);
 					toolsView.getBtnDelete().setEnabled(false);
 					toolsView.getBtnModify().setEnabled(false);
@@ -158,6 +158,49 @@ public class MainFrame extends JFrame {
 					}
 					
 				});
+				
+		// BRING TO FRONT
+				toolsView.getBtnBringToFront().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						toolsController.handleBringToFront();	
+					}
+					
+				});
+		// BRING TO BACK
+				toolsView.getBtnBringToBack().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						toolsController.handleBringToBack();	
+					}
+					
+				});
+				
+		// SEND TO FRONT
+				toolsView.getBtnSendToFront().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						toolsController.handleSendToFront();	
+					}
+					
+				});
+		// SEND TO BACK
+				toolsView.getBtnSendToBack().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						toolsController.handleSendToBack();	
+					}
+					
+				});
+				
 	}
 	
 	public CanvasView getView() {

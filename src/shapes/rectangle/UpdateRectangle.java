@@ -1,10 +1,11 @@
 package shapes.rectangle;
 
 import shapes.Command;
+import shapes.point.Point;
 
 public class UpdateRectangle implements Command {
 	
-	private Rectangle oldState = new Rectangle();
+	private Rectangle oldState = new Rectangle(new Point(0,0), 0, 0);
 	private Rectangle original;
 	private Rectangle newState;
 	
@@ -19,14 +20,14 @@ public class UpdateRectangle implements Command {
 		oldState.getUpperLeft().setY(original.getUpperLeft().getY());
 		oldState.setSideLength(original.getSideLength());
 		oldState.setWidth(original.getWidth());
-		oldState.setColor(original.getColor());
+		oldState.setBorderColor(original.getBorderColor());
 		oldState.setClrInnerColor(original.getClrInnerColor());
 		
 		original.getUpperLeft().setX(newState.getUpperLeft().getX());
 		original.getUpperLeft().setY(newState.getUpperLeft().getY());
 		original.setSideLength(newState.getSideLength());
 		original.setWidth(newState.getWidth());
-		original.setColor(newState.getColor());
+		original.setBorderColor(newState.getBorderColor());
 		original.setClrInnerColor(newState.getClrInnerColor());
 		
 	}
@@ -37,7 +38,7 @@ public class UpdateRectangle implements Command {
 		original.getUpperLeft().setY(oldState.getUpperLeft().getY());
 		original.setSideLength(oldState.getSideLength());
 		original.setWidth(oldState.getWidth());
-		original.setColor(oldState.getColor());
+		original.setBorderColor(oldState.getBorderColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
 		
 		

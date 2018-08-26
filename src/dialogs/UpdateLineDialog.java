@@ -13,6 +13,8 @@ import javax.swing.border.EmptyBorder;
 
 import shapes.line.Line;
 import shapes.point.Point;
+import utilities.ColorChooserButton;
+
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,7 +39,7 @@ public class UpdateLineDialog extends JDialog {
 	private JTextField txtEndX;
 	private JTextField txtEndY;
 	private JComboBox cmbLine;
-	private JButton btnOutlineColor;
+	private ColorChooserButton btnOutlineColor;
 	private Color changedOutlineColor;
 	
 	public UpdateLineDialog(Line ln) {
@@ -205,7 +207,7 @@ public class UpdateLineDialog extends JDialog {
 			contentPanel.add(lblColor, gbc_lblColor);
 		}
 		{
-			btnOutlineColor = new JButton("Outline color");
+			btnOutlineColor = new ColorChooserButton(changedOutlineColor);
 			GridBagConstraints gbc_btnOutlineColor = new GridBagConstraints();
 			gbc_btnOutlineColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnOutlineColor.insets = new Insets(0, 0, 0, 5);
@@ -256,7 +258,7 @@ public class UpdateLineDialog extends JDialog {
 									line.moveBy(Integer.parseInt(txtX.getText()), Integer.parseInt(txtY.getText()));
 		
 								}
-								line.setBorderColor(changedOutlineColor);
+								line.setBorderColor(btnOutlineColor.getSelectedColor());
 								setVisible(false);
 							}
 							
@@ -304,23 +306,8 @@ public class UpdateLineDialog extends JDialog {
 		txtStartY.setText(String.valueOf(this.line.getpStart().getY()));
 		txtEndX.setText(String.valueOf(this.line.getpEnd().getX()));
 		txtEndY.setText(String.valueOf(this.line.getpEnd().getY()));
-		btnOutlineColor.setBackground(line.getBorderColor());
 	
-		btnOutlineColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedOutlineColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnOutlineColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnOutlineColor.setForeground(Color.BLACK);	
-		         	}
-		     	   btnOutlineColor.setBackground(newColor);
-		     	  changedOutlineColor=newColor;
-				}
-			}
-		});
+		
 	
 		//pack();
 		setVisible(true);

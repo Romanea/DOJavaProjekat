@@ -14,6 +14,7 @@ import javax.swing.border.EmptyBorder;
 
 import shapes.point.Point;
 import shapes.rectangle.Rectangle;
+import utilities.ColorChooserButton;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -48,8 +49,8 @@ public class UpdateRectangleDialog extends JDialog {
 	private JTextField txtForWidth;
 	private JTextField txtBWidth;
 	private JLabel lblColors;
-	private JButton btnOutlineColor;
-	private JButton btnInteriorColor;
+	private ColorChooserButton btnOutlineColor;
+	private ColorChooserButton btnInteriorColor;
 	private Color changedOutlineColor;
 	private Color changedInteriorColor;
 	
@@ -287,7 +288,7 @@ public class UpdateRectangleDialog extends JDialog {
 			contentPanel.add(lblColors, gbc_lblColors);
 		}
 		{
-			btnOutlineColor = new JButton("Outline color");
+			btnOutlineColor = new ColorChooserButton(changedOutlineColor);
 			GridBagConstraints gbc_btnOutlineColor = new GridBagConstraints();
 			gbc_btnOutlineColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnOutlineColor.insets = new Insets(0, 0, 0, 5);
@@ -296,7 +297,7 @@ public class UpdateRectangleDialog extends JDialog {
 			contentPanel.add(btnOutlineColor, gbc_btnOutlineColor);
 		}
 		{
-			btnInteriorColor = new JButton("Interior color");
+			btnInteriorColor = new ColorChooserButton(changedInteriorColor);
 			GridBagConstraints gbc_btnInteriorColor = new GridBagConstraints();
 			gbc_btnInteriorColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnInteriorColor.insets = new Insets(0, 0, 0, 5);
@@ -357,8 +358,8 @@ public class UpdateRectangleDialog extends JDialog {
 		
 								}
 								
-								rectangle.setBorderColor(changedOutlineColor);
-								rectangle.setClrInnerColor(changedInteriorColor);
+								rectangle.setBorderColor(btnOutlineColor.getSelectedColor());
+								rectangle.setClrInnerColor(btnInteriorColor.getSelectedColor());
 								
 
 								
@@ -421,9 +422,6 @@ public class UpdateRectangleDialog extends JDialog {
 		txtForY.setText(String.valueOf(this.rectangle.getUpperLeft().getY()));
 		txtForLength.setText(String.valueOf(this.rectangle.getSideLength()));
 		txtForWidth.setText(String.valueOf(this.rectangle.getWidth()));
-		btnOutlineColor.setBackground(rectangle.getBorderColor());
-		btnInteriorColor.setBackground(rectangle.getClrInnerColor());
-		
 		cmbRectangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if (cmbRectangle.getSelectedItem().toString().equals("Move for")) {
@@ -472,37 +470,7 @@ public class UpdateRectangleDialog extends JDialog {
 			}
 		});
 		
-		btnOutlineColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedOutlineColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnOutlineColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnOutlineColor.setForeground(Color.WHITE);	
-		         	}
-		     	   btnOutlineColor.setBackground(newColor);
-		     	 changedOutlineColor=newColor;
-				}
-			}
-		});
 		
-		btnInteriorColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedInteriorColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnInteriorColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnInteriorColor.setForeground(Color.WHITE);	
-		         	}
-		     	   btnInteriorColor.setBackground(newColor);
-		     	 changedInteriorColor=newColor;
-				}
-			}
-		});
 		
 	
 		pack();

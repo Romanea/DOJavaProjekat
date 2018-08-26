@@ -145,7 +145,7 @@ public class OptionsController {
 
 
 	public void handleShapeChange() {
-		// change options dependng on type of shape
+		// change options depending on type of shape
 		String shapeName = optionsView.getCmbShapePicker().getSelectedItem().toString();
 		switch(shapeName)
 		{

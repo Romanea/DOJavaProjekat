@@ -1,10 +1,11 @@
 package shapes.square;
 
 import shapes.Command;
+import shapes.point.Point;
 
 public class UpdateSquare implements Command {
 
-	private Square oldState = new Square();
+	private Square oldState = new Square(new Point(0,0), 0);
 	private Square original;
 	private Square newState;
 	
@@ -24,7 +25,7 @@ public class UpdateSquare implements Command {
 		original.getUpperLeft().setX(newState.getUpperLeft().getX());
 		original.getUpperLeft().setY(newState.getUpperLeft().getY());
 		original.setSideLength(newState.getSideLength());
-		original.setColor(newState.getColor());
+		original.setBorderColor(newState.getBorderColor());
 		original.setClrInnerColor(newState.getClrInnerColor());
 	}
 
@@ -33,7 +34,7 @@ public class UpdateSquare implements Command {
 		original.getUpperLeft().setX(oldState.getUpperLeft().getX());
 		original.getUpperLeft().setY(oldState.getUpperLeft().getY());
 		original.setSideLength(oldState.getSideLength());
-		original.setColor(oldState.getColor());
+		original.setBorderColor(oldState.getBorderColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
 		
 	}

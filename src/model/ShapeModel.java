@@ -30,6 +30,16 @@ public class ShapeModel {
 	public ArrayList<Shape> getShapes() {
 		return shapes;
 	}
+	public ArrayList<Shape> getSelectedShapes() {
+		selectedShapes.clear();
+		for (int i = shapes.size() - 1; i >= 0; i--) {
+			if (shapes.get(i).isSelected()) {
+				selectedShapes.add(shapes.get(i));
+			}
+		}
+		return selectedShapes;
+	}
+
 	
 	public int countSelectedShapes() {
 		selectedShapes.clear();

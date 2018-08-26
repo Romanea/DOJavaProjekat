@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import shapes.point.Point;
+import utilities.ColorChooserButton;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -31,7 +32,7 @@ public class UpdatePointDialog extends JDialog {
 	private JTextField txtX;
 	private JTextField txtY;
 	private JComboBox cmbMove;
-	private JButton btnOutlineColor;
+	private ColorChooserButton btnOutlineColor;
 	private Color changedOutlineColor;
 	
 
@@ -114,7 +115,7 @@ public class UpdatePointDialog extends JDialog {
 			contentPanel.add(lblColor, gbc_lblColor);
 		}
 		{
-			btnOutlineColor = new JButton("Outline color");
+			btnOutlineColor = new ColorChooserButton(changedOutlineColor);
 			GridBagConstraints gbc_btnOutlineColor = new GridBagConstraints();
 			gbc_btnOutlineColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnOutlineColor.insets = new Insets(0, 0, 5, 0);
@@ -161,7 +162,7 @@ public class UpdatePointDialog extends JDialog {
 									point.moveBy(coordinateX, coordinateY);
 									System.out.println(point);
 								}
-								point.setBorderColor(changedOutlineColor);
+								point.setBorderColor(btnOutlineColor.getSelectedColor());
 								setVisible(false);
 							}
 							
@@ -203,24 +204,7 @@ public class UpdatePointDialog extends JDialog {
 		
 		txtX.setText(String.valueOf(this.point.getX()));
 		txtY.setText(String.valueOf(this.point.getY()));
-		btnOutlineColor.setBackground(changedOutlineColor);
 	
-		
-		btnOutlineColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedOutlineColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnOutlineColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnOutlineColor.setForeground(Color.BLACK);	
-		         	}
-		     	   btnOutlineColor.setBackground(newColor);
-		     	  changedOutlineColor=newColor;
-				}
-			}
-		});
 		
 		
 		

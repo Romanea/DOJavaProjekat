@@ -256,6 +256,7 @@ public class UpdateCircleDialog extends JDialog {
 		}
 		{
 			btnInteriorColor = new ColorChooserButton(changedInteriorColor);
+			
 			GridBagConstraints gbc_btnInteriorColor = new GridBagConstraints();
 			gbc_btnInteriorColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnInteriorColor.insets = new Insets(0, 0, 0, 5);
@@ -314,8 +315,8 @@ public class UpdateCircleDialog extends JDialog {
 		
 								}
 					
-								circle.setBorderColor(changedOutlineColor);
-								circle.setClrInnerColor(changedInteriorColor);
+								circle.setBorderColor(btnOutlineColor.getSelectedColor());
+								circle.setClrInnerColor(btnInteriorColor.getSelectedColor());
 								
 								setVisible(false);
 							}
@@ -374,8 +375,8 @@ public class UpdateCircleDialog extends JDialog {
 		txtBY.setText(String.valueOf(this.circle.getCenter().getY()));
 		txtBRadius.setText(String.valueOf(this.circle.getR()));
 	
-		btnInteriorColor.setBackground(circle.getClrInnerColor());
-		btnOutlineColor.setBackground(circle.getBorderColor());
+		btnInteriorColor.setSelectedColor(circle.getClrInnerColor());
+		btnOutlineColor.setSelectedColor(circle.getBorderColor());
 		
 		cmbCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -417,37 +418,7 @@ public class UpdateCircleDialog extends JDialog {
 		});
 	
 		
-		btnOutlineColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedOutlineColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnOutlineColor.setSelectedColor(Color.WHITE);	
-		         	} else {
-		         		btnOutlineColor.setSelectedColor(Color.WHITE);	
-		         	}
-		     	   btnOutlineColor.setSelectedColor(newColor);
-		     	  changedOutlineColor=newColor;
-				}
-			}
-		});
 		
-		btnInteriorColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedInteriorColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnInteriorColor.setSelectedColor(Color.WHITE);	
-		         	} else {
-		         		btnInteriorColor.setSelectedColor(Color.BLACK);	
-		         	}
-		     	   btnInteriorColor.setSelectedColor(newColor);;
-		     	 changedInteriorColor=newColor;
-				}
-			}
-		});
 
 	
 		pack();

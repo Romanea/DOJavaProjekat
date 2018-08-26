@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import shapes.hexagon.*;
+import utilities.ColorChooserButton;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -44,8 +45,8 @@ public class UpdateHexagonDialog extends JDialog {
 	private JTextField txtBY;
 	private JTextField txtBR;
 	private JComboBox cmbHexagon;
-	private JButton btnInteriorColor;
-	private JButton btnOutlineColor;
+	private ColorChooserButton btnInteriorColor;
+	private ColorChooserButton btnOutlineColor;
 	private Color changedOutlineColor;
 	private Color changedInteriorColor;
 
@@ -231,7 +232,7 @@ public class UpdateHexagonDialog extends JDialog {
 			contentPanel.add(lblColors, gbc_lblColors);
 		}
 		{
-			 btnOutlineColor = new JButton("Outline color");
+			 btnOutlineColor = new ColorChooserButton(changedOutlineColor);
 			GridBagConstraints gbc_btnOutlineColor = new GridBagConstraints();
 			gbc_btnOutlineColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnOutlineColor.insets = new Insets(0, 0, 0, 5);
@@ -240,7 +241,7 @@ public class UpdateHexagonDialog extends JDialog {
 			contentPanel.add(btnOutlineColor, gbc_btnOutlineColor);
 		}
 		{
-			btnInteriorColor = new JButton("Interior color");
+			btnInteriorColor = new ColorChooserButton(changedInteriorColor);
 			GridBagConstraints gbc_btnInteriorColor = new GridBagConstraints();
 			gbc_btnInteriorColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnInteriorColor.insets = new Insets(0, 0, 0, 5);
@@ -298,8 +299,8 @@ public class UpdateHexagonDialog extends JDialog {
 		
 								}
 								
-								hexagon.getHexagon().setBorderColor(changedOutlineColor);
-								hexagon.getHexagon().setAreaColor(changedInteriorColor);
+								hexagon.getHexagon().setBorderColor(btnOutlineColor.getSelectedColor());
+								hexagon.getHexagon().setAreaColor(btnInteriorColor.getSelectedColor());
 								
 
 								
@@ -360,8 +361,6 @@ public class UpdateHexagonDialog extends JDialog {
 		txtBX.setText(String.valueOf(hexagon.getHexagon().getX()));
 		txtBY.setText(String.valueOf(hexagon.getHexagon().getY()));
 		txtBR.setText(String.valueOf(hexagon.getHexagon().getR()));
-		btnInteriorColor.setBackground(hexagon.getHexagon().getAreaColor());
-		btnOutlineColor.setBackground(hexagon.getHexagon().getBorderColor());
 		
 	
 		
@@ -404,36 +403,7 @@ public class UpdateHexagonDialog extends JDialog {
 			}
 		});
 		
-		btnOutlineColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedOutlineColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnOutlineColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnOutlineColor.setForeground(Color.BLACK);	
-		         	}
-		     	   btnOutlineColor.setBackground(newColor);
-		     	  changedOutlineColor=newColor;
-				}
-			}
-		});
-		
-		btnInteriorColor.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedInteriorColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnInteriorColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnInteriorColor.setForeground(Color.WHITE);	
-		         	}
-		     	   btnInteriorColor.setBackground(newColor);
-		     	 changedInteriorColor=newColor;
-				}
-			}
-		});
+	
 		
 		pack();
 		setVisible(true);

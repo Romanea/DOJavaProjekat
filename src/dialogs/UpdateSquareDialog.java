@@ -15,6 +15,7 @@ import shapes.circle.Circle;
 import shapes.line.Line;
 import shapes.point.Point;
 import shapes.square.Square;
+import utilities.ColorChooserButton;
 
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
@@ -45,8 +46,8 @@ public class UpdateSquareDialog extends JDialog {
 	private JComboBox cmbSquare;
 	private JTextField txtForLength;
 	private JTextField txtToLength;
-	private JButton btnOutlineColor;
-	private JButton btnInteriorColor;
+	private ColorChooserButton btnOutlineColor;
+	private ColorChooserButton btnInteriorColor;
 	private Color changedOutlineColor;
 	private Color changedInteriorColor;
 
@@ -240,7 +241,7 @@ public class UpdateSquareDialog extends JDialog {
 			contentPanel.add(lblColors, gbc_lblColors);
 		}
 		{
-			btnOutlineColor = new JButton("Outline color");
+			btnOutlineColor = new ColorChooserButton(changedOutlineColor);
 			GridBagConstraints gbc_btnOutlineColor = new GridBagConstraints();
 			gbc_btnOutlineColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnOutlineColor.insets = new Insets(0, 0, 0, 5);
@@ -249,7 +250,7 @@ public class UpdateSquareDialog extends JDialog {
 			contentPanel.add(btnOutlineColor, gbc_btnOutlineColor);
 		}
 		{
-			btnInteriorColor= new JButton("Interior color");
+			btnInteriorColor= new ColorChooserButton(changedInteriorColor);
 			GridBagConstraints gbc_btnInteriorColor = new GridBagConstraints();
 			gbc_btnInteriorColor.fill = GridBagConstraints.HORIZONTAL;
 			gbc_btnInteriorColor.insets = new Insets(0, 0, 0, 5);
@@ -308,8 +309,8 @@ public class UpdateSquareDialog extends JDialog {
 		
 								}
 								
-								square.setBorderColor(changedOutlineColor);
-								square.setClrInnerColor(changedInteriorColor);
+								square.setBorderColor(btnOutlineColor.getSelectedColor());
+								square.setClrInnerColor(btnInteriorColor.getSelectedColor());
 								setVisible(false);
 							}
 							
@@ -365,9 +366,6 @@ public class UpdateSquareDialog extends JDialog {
 		txtBX.setText(String.valueOf(this.square.getUpperLeft().getX()));
 		txtBY.setText(String.valueOf(this.square.getUpperLeft().getY()));
 		txtBLength.setText(String.valueOf(this.square.getSideLength()));
-		btnInteriorColor.setBackground(square.getClrInnerColor());
-		btnOutlineColor.setBackground(square.getBorderColor());
-		
 
 		cmbSquare.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -409,38 +407,7 @@ public class UpdateSquareDialog extends JDialog {
 		});
 		
 		
-		
-		btnOutlineColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedOutlineColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnOutlineColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnOutlineColor.setForeground(Color.WHITE);	
-		         	}
-		     	   btnOutlineColor.setBackground(newColor);
-		     	  changedOutlineColor=newColor;
-				}
-			}
-		});
-		
-		btnInteriorColor.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				Color newColor = JColorChooser.showDialog(null, "Choose color: ",changedInteriorColor);
-				if(newColor!=null) {
-					if(newColor==Color.BLACK) {
-						btnInteriorColor.setForeground(Color.WHITE);	
-		         	} else {
-		         		btnInteriorColor.setForeground(Color.BLACK);	
-		         	}
-		     	   btnInteriorColor.setBackground(newColor);
-		     	 changedInteriorColor=newColor;
-				}
-			}
-		});
+	
 		
 	
 		pack();
