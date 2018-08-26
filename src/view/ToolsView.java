@@ -103,6 +103,7 @@ public class ToolsView extends JPanel{
 		lblInfo.setText("Mode: Drawing");
 		
 		btnBringToFront = new JButton("Bring to front");
+		btnBringToFront.setEnabled(false);
 		gbc_bringToFront = new GridBagConstraints();
 		gbc_bringToFront.fill = GridBagConstraints.HORIZONTAL;
 		gbc_bringToFront.insets = new Insets(0, 0, 0, 5);
@@ -111,6 +112,7 @@ public class ToolsView extends JPanel{
 		add(btnBringToFront, gbc_bringToFront);
 		
 		btnBringToBack = new JButton("Bring to back");
+		btnBringToBack.setEnabled(false);
 		gbc_bringToBack = new GridBagConstraints();
 		gbc_bringToBack.fill = GridBagConstraints.HORIZONTAL;
 		gbc_bringToBack.insets = new Insets(0, 0, 0, 5);
@@ -119,6 +121,7 @@ public class ToolsView extends JPanel{
 		add(btnBringToBack, gbc_bringToBack);
 		
 		btnSendToFront = new JButton("Send to front");
+		btnSendToFront.setEnabled(false);
 		gbc_sendToFront = new GridBagConstraints();
 		gbc_sendToFront.fill = GridBagConstraints.HORIZONTAL;
 		gbc_sendToFront.insets = new Insets(0, 0, 0, 5);
@@ -127,6 +130,7 @@ public class ToolsView extends JPanel{
 		add(btnSendToFront, gbc_sendToFront);
 		
 		btnSendToBack = new JButton("Send to back");
+		btnSendToBack.setEnabled(false);
 		gbc_sendToBack = new GridBagConstraints();
 		gbc_sendToBack.fill = GridBagConstraints.HORIZONTAL;
 		gbc_sendToBack.insets = new Insets(0, 0, 0, 5);

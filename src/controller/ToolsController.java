@@ -118,33 +118,49 @@ public class ToolsController {
 	// BRING TO FRONT
 	
 	public void handleBringToFront() {
+		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToFront cmd = new BringToFront(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().repaint();
+		}else {
+			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 			
 	// BRING TO BACK
 	
 	public void handleBringToBack() {
+		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToBack cmd = new BringToBack(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().repaint();
+		}else {
+			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 			
 	// SEND TO FRONT
 	
 	public void handleSendToFront() {
+		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		ToFront cmd = new ToFront(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().repaint();
+		}else {
+			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 			
 	// SEND TO BACK
 	
 	public void handleSendToBack() {
+		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		ToBack cmd = new ToBack(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().repaint();
+		}else {
+			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 			
 	

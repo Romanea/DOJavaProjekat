@@ -106,6 +106,13 @@ public class MainFrame extends JFrame {
 					toolsView.getBtnDeleteAll().setEnabled(false);
 					toolsView.getBtnDelete().setEnabled(true);
 					toolsView.getBtnModify().setEnabled(true);
+					toolsView.getBtnBringToBack().setEnabled(true);
+					toolsView.getBtnBringToFront().setEnabled(true);
+					toolsView.getBtnSendToBack().setEnabled(true);
+					toolsView.getBtnSendToFront().setEnabled(true);
+
+
+
 					
 				}
 				else if( ie.getStateChange() == ItemEvent.DESELECTED)
@@ -116,7 +123,10 @@ public class MainFrame extends JFrame {
 					toolsView.getBtnDelete().setEnabled(false);
 					toolsView.getBtnModify().setEnabled(false);
 					toolsView.getBtnDeleteAll().setEnabled(true);
-
+					toolsView.getBtnBringToBack().setEnabled(false);
+					toolsView.getBtnBringToFront().setEnabled(false);
+					toolsView.getBtnSendToBack().setEnabled(false);
+					toolsView.getBtnSendToFront().setEnabled(false);
 					selectionMode = false;
 					
 				}
