@@ -2,17 +2,22 @@ package shapes.line;
 
 import shapes.Command;
 import shapes.point.Point;
+import view.LoggerView;
 
 public class UpdateLine implements Command{
 
 	private Line oldState = new Line(new Point(0,0), new Point(0,0));
 	private Line original;
 	private Line newState;
+	private LoggerView log;
+
 	
-	public UpdateLine(Line original, Line newState) {
+	public UpdateLine(Line original, Line newState, LoggerView log) {
 	
 		this.original = original;
 		this.newState = newState;
+		this.log = log;
+
 	}
 	@Override
 	public void execute() {
@@ -28,6 +33,8 @@ public class UpdateLine implements Command{
 		original.getpEnd().setY(newState.getpEnd().getY());
 		original.setColor(newState.getColor());
 		
+		log.getModel().addElement("Update: " + original.toString()+ " to "+ newState.toString());
+
 	}
 
 	@Override
@@ -38,6 +45,8 @@ public class UpdateLine implements Command{
 		original.getpEnd().setY(oldState.getpEnd().getY());
 		original.setColor(oldState.getColor());
 		
+		log.getModel().addElement("Undo Update: " + original.toString()+ " to "+ newState.toString());
+
 	}
 
 }

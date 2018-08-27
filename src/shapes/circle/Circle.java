@@ -36,7 +36,7 @@ public class Circle extends FilledShape implements Moveable{
 	
 	public String toString()
 	{
-		return "center " + center + ", radius =" + r;
+		return "Circle: (center " + center + ", radius =" + r+")";
 	}
 	public void draw(Graphics g)
 	{

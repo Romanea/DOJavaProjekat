@@ -25,13 +25,17 @@ public class LoggerView extends JPanel {
 
 		lstLogger = new JList<String>();
 		scrollPane.setViewportView(lstLogger);
+		
+		dlm = new DefaultListModel<String>();
+		setDlm(dlm);
+
 	}
 
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
 
-	public DefaultListModel<String> getDlm() {
+	public DefaultListModel<String> getModel() {
 		return dlm;
 	}
 

@@ -29,6 +29,8 @@ public class ToolsView extends JPanel{
 	private JButton btnSendToFront;
 	private JButton btnBringToFront;
 	private JButton btnSendToBack;
+	private JButton btnUndo;
+	private JButton btnRedo;
 	private JLabel lblInfo;
 	private GridBagLayout gridBagLayout;
 	private GridBagConstraints gbc_select;
@@ -39,6 +41,8 @@ public class ToolsView extends JPanel{
 	private GridBagConstraints gbc_bringToBack;
 	private GridBagConstraints gbc_sendToFront;
 	private GridBagConstraints gbc_sendToBack;
+	private GridBagConstraints gbc_undo;
+	private GridBagConstraints gbc_redo;
 	private GridBagConstraints gbc_info;
 
 	public ToolsView() {
@@ -51,7 +55,7 @@ public class ToolsView extends JPanel{
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,0.0, 0.0, 0.0,0.0,0.0,0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		tglbtnSelect = new JToggleButton("Select");
@@ -138,6 +142,22 @@ public class ToolsView extends JPanel{
 		gbc_sendToBack.gridy =7;
 		add(btnSendToBack, gbc_sendToBack);
 		
+		btnUndo = new JButton("Undo");
+		gbc_undo = new GridBagConstraints();
+		gbc_undo.fill = GridBagConstraints.HORIZONTAL;
+		gbc_undo.insets = new Insets(0, 0, 0, 5);
+		gbc_undo.gridx =0;
+		gbc_undo.gridy =11;
+		add(btnUndo, gbc_undo);
+		
+		btnRedo = new JButton("Redo");
+		gbc_redo = new GridBagConstraints();
+		gbc_redo.fill = GridBagConstraints.HORIZONTAL;
+		gbc_redo.insets = new Insets(0, 0, 0, 5);
+		gbc_redo.gridx =0;
+		gbc_redo.gridy =12;
+		add(btnRedo, gbc_redo);
+		
 	
 		
 	}
@@ -168,6 +188,14 @@ public class ToolsView extends JPanel{
 
 	public JLabel getLblInfo() {
 		return lblInfo;
+	}
+
+	public JButton getBtnUndo() {
+		return btnUndo;
+	}
+
+	public JButton getBtnRedo() {
+		return btnRedo;
 	}
 
 	public JButton getBtnDelete() {

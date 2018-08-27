@@ -14,7 +14,7 @@ public class DrawingApp {
 		ShapeModel model = new ShapeModel();
 		MainFrame frame = new MainFrame();
 		CommandModel commandModel = new CommandModel();
-		CommandController commandController = new CommandController(commandModel, frame);
+		CommandController commandController = new CommandController(commandModel, frame, frame.getLogView());
 		frame.setCommandController(commandController);
 		frame.getView().setModel(model);
 		CanvasController controller = new CanvasController(model, frame);;

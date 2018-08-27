@@ -4,17 +4,22 @@ import java.awt.Color;
 
 import hexagon.Hexagon;
 import shapes.Command;
+import view.LoggerView;
 
 public class UpdateHexagonAdapter implements Command{
 	
 	private HexagonAdapter oldState = new HexagonAdapter(new Hexagon(0, 0, 0), Color.BLACK, Color.BLACK);
 	private HexagonAdapter original;
 	private HexagonAdapter newState;
+	private LoggerView log;
 
 
-	public UpdateHexagonAdapter(HexagonAdapter original, HexagonAdapter newState) {
+
+	public UpdateHexagonAdapter(HexagonAdapter original, HexagonAdapter newState, LoggerView log) {
 		this.original = original;
 		this.newState = newState;
+		this.log = log;
+
 		
 	}
 
@@ -31,6 +36,9 @@ public class UpdateHexagonAdapter implements Command{
 		original.getHexagon().setR(newState.getHexagon().getR());
 		original.setColor(newState.getColor());
 		original.setClrInnerColor(newState.getClrInnerColor());
+		
+		log.getModel().addElement("Update: " + original.toString()+ " to "+ newState.toString());
+
 	}
 
 	@Override
@@ -40,6 +48,9 @@ public class UpdateHexagonAdapter implements Command{
 		original.getHexagon().setR(oldState.getHexagon().getR());
 		original.setColor(oldState.getColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
+		
+		log.getModel().addElement("Undo Update: " + original.toString()+ " to "+ newState.toString());
+
 
 	}
 

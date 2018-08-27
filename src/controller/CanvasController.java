@@ -23,7 +23,10 @@ public class CanvasController  {
 
 	
 	public void mousePressed(MouseEvent e, Shape shape) {
-		frame.getCommandController().generateAddCommand(shape, model).execute();
+		Command cmd = frame.getCommandController().generateAddCommand(shape, model);
+		cmd.execute();
+		model.getUndoStack().offerLast(cmd);
+
 		
 	}
 	

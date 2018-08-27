@@ -1,19 +1,19 @@
 package zcommand;
 
 import model.ShapeModel;
-import view.LogView;
+import view.LoggerView;
 import shapes.Command;
 import shapes.Shape;
 
 public class ToBack implements Command {
 	
 	private ShapeModel model;
-	private LogView logView;
+	private LoggerView logView;
 	private Shape tmpShape;
 
-	public ToBack(ShapeModel drawingModel) {
+	public ToBack(ShapeModel drawingModel, LoggerView logView) {
 		this.model = drawingModel;
-		//this.logView = logView;
+		this.logView = logView;
 	}
 
 	@Override
@@ -25,7 +25,7 @@ public class ToBack implements Command {
 				tmpShape = model.getSelectedShapes().get(0);
 				model.getShapes().set(i, model.getShape(i-1));
 				model.getShapes().set(i-1, tmpShape);
-				//logView.getModel().addElement("To back: " + tmpShape.toString());
+				logView.getModel().addElement("To back: " + tmpShape.toString());
 				return;
 				}
 				
@@ -44,7 +44,7 @@ public class ToBack implements Command {
 				
 				model.getShapes().set(i, model.getShape(i+1));
 				model.getShapes().set(i+1, tmpShape);
-				//logView.getModel().addElement("Undo to back: " + tmpShape.toString());
+				logView.getModel().addElement("Undo to back: " + tmpShape.toString());
 			
 				return;
 			}

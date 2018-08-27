@@ -1,14 +1,19 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 
+import shapes.Command;
 import shapes.Shape;
 
 public class ShapeModel {
 
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
+	private Deque<Command> redoStack = new LinkedList<>();
+	private Deque<Command> undoStack = new LinkedList<>();
 	private ArrayList<Shape> selectedShapes = new ArrayList<>();
-
+	private ArrayList<String> logList  = new ArrayList<>();
 	
 	
 	public void add(Shape s) {
@@ -51,5 +56,25 @@ public class ShapeModel {
 		
 		return selectedShapes.size();
 	}
+	
+
+	public Deque<Command> getRedoStack() {
+		return redoStack;
+	}
+
+	public Deque<Command> getUndoStack() {
+		return undoStack;
+	}
+	
+	public ArrayList<String> getLogList() {
+		return logList;
+	}
+
+	public void setLogList(ArrayList<String> logList) {
+		this.logList = logList;
+	}
+	
+
+	
 
 }

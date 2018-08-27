@@ -1,20 +1,20 @@
 package zcommand;
 
 import model.ShapeModel;
-import view.LogView;
+import view.LoggerView;
 import shapes.Command;
 import shapes.Shape;
 
 public class BringToBack implements Command {
 	
 	private ShapeModel model;
-	private LogView logView;
+	private LoggerView logView;
 	private Shape tmpShape;
 	private int indexOfShape;
 
-	public BringToBack(ShapeModel drawingModel) {
+	public BringToBack(ShapeModel drawingModel, LoggerView logView) {
 		this.model = drawingModel;
-		//this.logView = logView;
+		this.logView = logView;
 	}
 
 	@Override
@@ -29,7 +29,7 @@ public class BringToBack implements Command {
 					model.getShapes().set(j, model.getShape(j-1));
 				}
 				model.getShapes().set(0, tmpShape);
-				//logView.getModel().addElement("Bring to back: " + tmpShape.toString());
+				logView.getModel().addElement("Bring to back: " + tmpShape.toString());
 				return;
 			}
 		}
@@ -44,7 +44,7 @@ public class BringToBack implements Command {
 		}
 		
 		model.getShapes().set(indexOfShape, tmpShape);
-		//logView.getModel().addElement("Undo bring to back: " + tmpShape.toString());
+		logView.getModel().addElement("Undo bring to back: " + tmpShape.toString());
 
 	}
 

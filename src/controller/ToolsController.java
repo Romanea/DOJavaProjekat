@@ -4,6 +4,7 @@ import java.awt.event.MouseEvent;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import app.MainFrame;
+import shapes.Command;
 import shapes.Shape;
 import view.ToolsView;
 import zcommand.*;
@@ -70,7 +71,10 @@ public class ToolsController {
 		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
 			
 			if (frame.getView().getModel().getShapes().get(i).isSelected()) {
-				frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel()).execute();
+				Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
+				cmd.execute();
+				frame.getView().getModel().getUndoStack().offerLast(cmd);
+
 			}
 			
 		}
@@ -83,7 +87,10 @@ public class ToolsController {
 	public void handleDeleteAll() {
 		
 		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
-			frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel()).execute();
+			Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
+			cmd.execute();
+			frame.getView().getModel().getUndoStack().offerLast(cmd);
+
 				
 		}
 		frame.getView().repaint();
@@ -98,7 +105,10 @@ public class ToolsController {
 				for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
 					
 					if (frame.getView().getModel().getShapes().get(i).isSelected()) {
-						frame.getCommandController().generateUpdateCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel()).execute();
+						Command cmd = frame.getCommandController().generateUpdateCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
+						cmd.execute();
+						frame.getView().getModel().getUndoStack().offerLast(cmd);
+
 					}
 					
 				}
@@ -119,8 +129,10 @@ public class ToolsController {
 	
 	public void handleBringToFront() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		BringToFront cmd = new BringToFront(frame.getView().getModel());
+		BringToFront cmd = new BringToFront(frame.getView().getModel(), frame.getLogView());
 		cmd.execute();
+		frame.getView().getModel().getUndoStack().offerLast(cmd);
+
 		frame.getView().repaint();
 		}else {
 			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
@@ -131,8 +143,10 @@ public class ToolsController {
 	
 	public void handleBringToBack() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		BringToBack cmd = new BringToBack(frame.getView().getModel());
+		BringToBack cmd = new BringToBack(frame.getView().getModel(), frame.getLogView());
 		cmd.execute();
+		frame.getView().getModel().getUndoStack().offerLast(cmd);
+
 		frame.getView().repaint();
 		}else {
 			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
@@ -143,8 +157,10 @@ public class ToolsController {
 	
 	public void handleSendToFront() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		ToFront cmd = new ToFront(frame.getView().getModel());
+		ToFront cmd = new ToFront(frame.getView().getModel(), frame.getLogView());
 		cmd.execute();
+		frame.getView().getModel().getUndoStack().offerLast(cmd);
+
 		frame.getView().repaint();
 		}else {
 			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
@@ -155,11 +171,37 @@ public class ToolsController {
 	
 	public void handleSendToBack() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		ToBack cmd = new ToBack(frame.getView().getModel());
+		ToBack cmd = new ToBack(frame.getView().getModel(), frame.getLogView());
 		cmd.execute();
+		frame.getView().getModel().getUndoStack().offerLast(cmd);
+
 		frame.getView().repaint();
 		}else {
 			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	//UNDO
+	
+	public void handleUndo() {
+		
+		if (!frame.getView().getModel().getUndoStack().isEmpty()) {
+			Command previousCommand = frame.getView().getModel().getUndoStack().pollLast();
+			previousCommand.unexecute();
+			frame.getView().getModel().getRedoStack().offerLast(previousCommand);
+			frame.repaint();
+		}
+	}
+	
+	//REDO 
+
+	public void handleRedo() {
+		
+		if (!frame.getView().getModel().getRedoStack().isEmpty()) {
+			Command previousCommand = frame.getView().getModel().getRedoStack().pollLast();
+			frame.getView().getModel().getUndoStack().offerLast(previousCommand);
+			previousCommand.execute();
+			frame.repaint();
 		}
 	}
 			

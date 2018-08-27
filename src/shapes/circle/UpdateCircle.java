@@ -4,16 +4,21 @@ package shapes.circle;
 
 import shapes.Command;
 import shapes.point.Point;
+import view.LoggerView;
 
 public class UpdateCircle implements Command{
 
 	private Circle oldState = new Circle(new Point(0,0), 0);
 	private Circle original;
 	private Circle newState;
+	private LoggerView log;
+
 	
-	public UpdateCircle(Circle original, Circle newState) {
+	public UpdateCircle(Circle original, Circle newState, LoggerView log) {
 		this.original = original;
 		this.newState = newState;
+		this.log = log;
+
 		
 	}
 	
@@ -36,6 +41,8 @@ public class UpdateCircle implements Command{
 		original.setClrInnerColor(newState.getClrInnerColor());
 		original.setBorderColor(newState.getBorderColor());
 		
+		log.getModel().addElement("Update: " + original.toString()+ " to "+ newState.toString());
+
 		
 	}
 
@@ -46,6 +53,8 @@ public class UpdateCircle implements Command{
 		original.setR(oldState.getR());
 		original.setClrInnerColor(oldState.getClrInnerColor());
 		original.setBorderColor(oldState.getBorderColor());
+		log.getModel().addElement("Undo Update: " + original.toString()+ " to "+ newState.toString());
+
 		
 	}
 

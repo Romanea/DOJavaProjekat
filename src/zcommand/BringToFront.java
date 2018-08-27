@@ -1,20 +1,20 @@
 package zcommand;
 
 import model.ShapeModel;
-import view.LogView;
+import view.LoggerView;
 import shapes.Command;
 import shapes.Shape;
 
 public class BringToFront implements Command {
 	
 	private ShapeModel model;
-	private LogView logView;
+	private LoggerView logView;
 	private Shape tmpShape;
 	private int indexOfShape;
 
-	public BringToFront(ShapeModel drawingModel) {
+	public BringToFront(ShapeModel drawingModel, LoggerView logView ) {
 		this.model = drawingModel;
-		//this.logView = logView;
+		this.logView = logView;
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class BringToFront implements Command {
 				
 				model.getShapes().add(tmpShape);
 				model.remove(model.getShape(i));
-				//logView.getModel().addElement("Bring to front: " + tmpShape.toString());
+				logView.getModel().addElement("Bring to front: " + tmpShape.toString());
 				return;
 			}
 		}
@@ -46,7 +46,7 @@ public class BringToFront implements Command {
 		}
 		
 		model.getShapes().set(indexOfShape, tmpShape);
-		//logView.getModel().addElement("Undo bring to front: " + tmpShape.toString());
+		logView.getModel().addElement("Undo bring to front: " + tmpShape.toString());
 		
 		
 		

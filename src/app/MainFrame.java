@@ -21,6 +21,7 @@ import controller.CommandController;
 import controller.OptionsController;
 import controller.ToolsController;
 import model.CommandModel;
+import view.LoggerView;
 import view.CanvasView;
 import view.OptionsView;
 import view.ToolsView;
@@ -36,6 +37,8 @@ public class MainFrame extends JFrame {
 	private OptionsView optionsView = new OptionsView();
 	private ToolsController toolsController;
 	private ToolsView toolsView= new ToolsView();
+	private LoggerView logView = new LoggerView();
+
 	private CommandController commandController; 
 	private boolean selectionMode;
 	
@@ -56,6 +59,8 @@ public class MainFrame extends JFrame {
 		getContentPane().add(view, BorderLayout.CENTER);
 		getContentPane().add(optionsView, BorderLayout.NORTH);
 		getContentPane().add(toolsView, BorderLayout.WEST);
+		getContentPane().add(logView, BorderLayout.SOUTH);
+
 		view.setBackground(Color.WHITE);
 		
 		events();
@@ -211,6 +216,31 @@ public class MainFrame extends JFrame {
 					
 				});
 				
+		// UNDO
+				
+				toolsView.getBtnUndo().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						toolsController.handleUndo();	
+					}
+					
+				});
+				
+				
+		//REDO
+				
+				toolsView.getBtnRedo().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						toolsController.handleRedo();	
+					}
+					
+				});
+				
 	}
 	
 	public CanvasView getView() {
@@ -250,7 +280,9 @@ public class MainFrame extends JFrame {
 		this.toolsController = toolsController;
 	}
 
-	
+	public LoggerView getLogView() {
+		return this.logView;
+	}
 	
 
 	

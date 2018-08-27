@@ -1,19 +1,19 @@
 package zcommand;
 
 import model.ShapeModel;
-import view.LogView;
+import view.LoggerView;
 import shapes.Command;
 import shapes.Shape;
 
 public class ToFront implements Command {
 	
 	private ShapeModel drawingModel;
-	private LogView logView;
+	private LoggerView logView;
 	private Shape tmpShape;
 
-	public ToFront(ShapeModel drawingModel) {
+	public ToFront(ShapeModel drawingModel, LoggerView logView) {
 		this.drawingModel = drawingModel;
-		//this.logView = logView;
+		this.logView = logView;
 	}
 
 	@Override
@@ -26,7 +26,7 @@ public class ToFront implements Command {
 				tmpShape = drawingModel.getSelectedShapes().get(0);
 				drawingModel.getShapes().set(i, drawingModel.getShape(i+1));
 				drawingModel.getShapes().set(i+1, tmpShape);
-				//logView.getModel().addElement("To front: " + tmpShape.toString());
+				logView.getModel().addElement("To front: " + tmpShape.toString());
 			
 				return;
 			}
@@ -42,7 +42,7 @@ public class ToFront implements Command {
 				
 				drawingModel.getShapes().set(i, drawingModel.getShape(i-1));
 				drawingModel.getShapes().set(i-1, tmpShape);
-				//logView.getModel().addElement("Undo to front: " + tmpShape.toString());
+				logView.getModel().addElement("Undo to front: " + tmpShape.toString());
 				return;
 				}
 				
