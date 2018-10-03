@@ -7,6 +7,7 @@ import controller.CommandController;
 import controller.ToolsController;
 import model.CommandModel;
 import model.ShapeModel;
+import shapes.observer.ButtonObserver;
 
 public class DrawingApp {
 
@@ -21,6 +22,8 @@ public class DrawingApp {
 		frame.setCanvasController(controller);
 		ToolsController toolsController = new ToolsController(frame);
 		frame.setToolsController(toolsController);
+		ButtonObserver buttonObserver = new ButtonObserver(frame.getToolsView());
+		model.addObserver(buttonObserver);
 		}
 
 	

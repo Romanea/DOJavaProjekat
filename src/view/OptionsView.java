@@ -8,6 +8,7 @@ import java.awt.Insets;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -47,6 +48,16 @@ public class OptionsView extends JPanel{
 	private GridBagConstraints gbc_AdditionalOption2;
 	private JTextField txtAdditionalOption2;
 	private GridBagConstraints gbc_txtAdditionalOption2;
+	private JButton btnSaveLog;
+	private GridBagConstraints gbc_save_log;
+	private JButton btnSaveDrawing;
+	private GridBagConstraints gbc_save_drawing;
+	private JButton btnImportDrawing;
+	private GridBagConstraints gbc_import_drawing;
+	private JButton btnImportLog;
+	private GridBagConstraints gbc_import_log;
+	private JButton btnLogNextLine;
+	private GridBagConstraints gbc_log_line;
 	public static Color pBorderColor = Color.BLACK;
 	public static Color pInnerColor = Color.WHITE;
 
@@ -166,8 +177,87 @@ public class OptionsView extends JPanel{
 			gbc_txtAdditionalOption2.gridy = 0;
 			add(txtAdditionalOption2, gbc_txtAdditionalOption2);
 			
+			btnSaveLog = new JButton("Save Log");
+			gbc_save_log = new GridBagConstraints();
+			gbc_save_log.fill = GridBagConstraints.HORIZONTAL;
+			gbc_save_log.insets = new Insets(0, 0, 0, 6);
+			gbc_save_log.gridx =11;
+			gbc_save_log.gridy =0;
+			add(btnSaveLog, gbc_save_log);
+			
+			btnSaveDrawing = new JButton("Save Drawing");
+			gbc_save_drawing = new GridBagConstraints();
+			gbc_save_drawing.fill = GridBagConstraints.HORIZONTAL;
+			gbc_save_drawing.insets = new Insets(0, 0, 0, 7);
+			gbc_save_drawing.gridx =12;
+			gbc_save_drawing.gridy =0;
+			add(btnSaveDrawing, gbc_save_drawing);
+			
+			btnImportLog = new JButton("Import Log");
+			gbc_import_log = new GridBagConstraints();
+			gbc_import_log.fill = GridBagConstraints.HORIZONTAL;
+			gbc_import_log.insets = new Insets(0, 0, 0, 5);
+			gbc_import_log.gridx =13;
+			gbc_import_log.gridy =0;
+			add(btnImportLog, gbc_import_log);
+			
+			btnImportDrawing = new JButton("Import Drawing");
+			gbc_import_drawing = new GridBagConstraints();
+			gbc_import_drawing.fill = GridBagConstraints.HORIZONTAL;
+			gbc_import_drawing.insets = new Insets(0, 0, 0, 5);
+			gbc_import_drawing.gridx =14;
+			gbc_import_drawing.gridy =0;
+			add(btnImportDrawing, gbc_import_drawing);
+			
+			btnLogNextLine = new JButton("Log next line");
+			gbc_log_line = new GridBagConstraints();
+			gbc_log_line.fill = GridBagConstraints.HORIZONTAL;
+			gbc_log_line.insets = new Insets(0, 0, 0, 5);
+			gbc_log_line.gridx =15;
+			gbc_log_line.gridy =0;
+			add(btnLogNextLine, gbc_log_line);
+			
+			
+		
+			
 			
 
+	}
+
+	public JButton getBtnLogNextLine() {
+		return btnLogNextLine;
+	}
+
+	public JButton getBtnImportDrawing() {
+		return btnImportDrawing;
+	}
+
+	public void setBtnImportDrawing(JButton btnImportDrawing) {
+		this.btnImportDrawing = btnImportDrawing;
+	}
+
+	public JButton getBtnImportLog() {
+		return btnImportLog;
+	}
+
+	public void setBtnImportLog(JButton btnImportLog) {
+		this.btnImportLog = btnImportLog;
+	}
+
+	public JButton getBtnSaveLog() {
+		return btnSaveLog;
+	}
+
+	public void setBtnSaveLog(JButton btnSaveLog) {
+		this.btnSaveLog = btnSaveLog;
+	}
+
+	public JButton getBtnSaveDrawing() {
+		return btnSaveDrawing;
+	}
+
+	public void setBtnSaveDrawing(JButton btnSaveDrawing) {
+		this.btnSaveDrawing = btnSaveDrawing;
 	}
 
 	public void setEnabled(boolean setEnabled)

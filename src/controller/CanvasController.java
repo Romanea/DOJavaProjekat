@@ -1,10 +1,8 @@
 package controller;
 
 
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.JOptionPane;
 
 import shapes.Command;
 import shapes.Shape;
@@ -14,7 +12,6 @@ import model.ShapeModel;
 public class CanvasController  {
 	private MainFrame frame;
 	private ShapeModel model;
-	private Command command;
 
 	public CanvasController(ShapeModel model, MainFrame frame ) {
 		this.frame = frame;
@@ -26,8 +23,19 @@ public class CanvasController  {
 		Command cmd = frame.getCommandController().generateAddCommand(shape, model);
 		cmd.execute();
 		model.getUndoStack().offerLast(cmd);
+	}
+	
+	public void draw(Shape shape) {
+		Command cmd = frame.getCommandController().generateAddCommand(shape, model);
+		cmd.execute();
+    	frame.getView().repaint();
 
-		
+	}
+	
+	public void makeNewDrawing() {
+		model.removeAllShapes();
+    	frame.getView().repaint();
+    	frame.getLogView().getModel().clear();
 	}
 	
 	

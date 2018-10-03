@@ -2,11 +2,12 @@ package shapes.point;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import shapes.Moveable;
 import shapes.Shape;
 
-public class Point extends Shape implements Moveable{
+public class Point extends Shape implements Moveable, Serializable{
 	private int x;
 	private int y;
 
@@ -34,8 +35,9 @@ public class Point extends Shape implements Moveable{
 
 	public String toString()
 	{
-		return "(" + this.x + ","+this.y+")";			
+		return "Point: (" + this.x + "," + this.y + "); color:"  + getBorderColor().getRGB();			
 	}
+
 
 	public boolean equals(Object obj)
 	{

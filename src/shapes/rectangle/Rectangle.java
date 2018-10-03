@@ -2,12 +2,17 @@ package shapes.rectangle;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import shapes.line.Line;
 import shapes.point.Point;
 import shapes.square.Square;
 
-public class Rectangle extends Square{
+public class Rectangle extends Square implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int width;
 
 	public Rectangle(){
@@ -46,8 +51,9 @@ public class Rectangle extends Square{
 			return false;
 	}
 
-	public String toString(){
-		return "Upper left corner="+upperLeft+", width="+width+", height="+getSideLength();
+	public String toString()
+	{
+		return "Rectangle: (" + this.upperLeft.getX() + "," + this.upperLeft.getY() + "); lengthSide:" + this.sideLength + "; width:" + this.width + "; outer color:" + getBorderColor().getRGB() + "; inside color:" + Integer.toString(getClrInnerColor().getRGB());
 	}
 
 	public int perimeter(){

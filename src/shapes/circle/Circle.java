@@ -2,13 +2,14 @@ package shapes.circle;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import shapes.FilledShape;
 import shapes.Moveable;
 import shapes.line.Line;
 import shapes.point.Point;
 
-public class Circle extends FilledShape implements Moveable{
+public class Circle extends FilledShape implements Moveable, Serializable{
 	private Point center;
 	private int r;
 	
@@ -36,7 +37,7 @@ public class Circle extends FilledShape implements Moveable{
 	
 	public String toString()
 	{
-		return "Circle: (center " + center + ", radius =" + r+")";
+		return "Circle: (" + this.center.getX() + "," + this.center.getY() + "); radius:" + this.r + "; outer color:" + getBorderColor().getRGB() + "; inside color:" + Integer.toString(getClrInnerColor().getRGB());
 	}
 	public void draw(Graphics g)
 	{

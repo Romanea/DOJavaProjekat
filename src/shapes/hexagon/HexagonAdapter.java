@@ -2,12 +2,13 @@ package shapes.hexagon;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import hexagon.*;
 import shapes.FilledShape;
 import shapes.Moveable;
 
-public class HexagonAdapter extends FilledShape  implements Moveable{
+public class HexagonAdapter extends FilledShape  implements Moveable, Serializable{
 	
 	private Hexagon hexagon;
 
@@ -37,9 +38,8 @@ public class HexagonAdapter extends FilledShape  implements Moveable{
 
 	@Override
 	public String toString() {
-		return String.format("Hexagon(X=" + hexagon.getX() + ", Y="+hexagon.getY()+", R=" + hexagon.getR()+" )");
+		return "Hexagon: (" + this.hexagon.getX() + "," + this.hexagon.getY() + "); radius:" + hexagon.getR() + "; outer color:" + hexagon.getBorderColor().getRGB()+ "; inside color:" + hexagon.getAreaColor().getRGB();
 	}
-
 	@Override
 	public boolean isSelected() {
 		return hexagon.isSelected();

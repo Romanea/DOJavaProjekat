@@ -2,11 +2,12 @@ package shapes.line;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import shapes.Shape;
 import shapes.point.Point;
 
-public class Line extends Shape{
+public class Line extends Shape implements Serializable{
 	private Point pStart;
 	private Point pEnd;
 
@@ -42,9 +43,8 @@ public class Line extends Shape{
 		return new Point((pStart.getX() + pEnd.getX()) / 2, (pStart.getY() + pEnd.getY()) / 2);
 	}
 	
-	public String toString()
-	{
-		return "Line: ("+pStart.getX()+"," +pStart.getY()+") --> (" + pEnd.getX()+","+ pEnd.getY() + ")";
+	public String toString(){
+		return "Line: (" + this.pStart.getX() + "," + this.pStart.getY() + "); ("  + this.pEnd.getX() + "," + this.pEnd.getY() + "); color:"  + getBorderColor().getRGB();
 	}
 
 	public boolean equals(Object obj)

@@ -1,9 +1,12 @@
 package controller;
 
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import hexagon.Hexagon;
 import shapes.*;
@@ -13,14 +16,30 @@ import shapes.line.Line;
 import shapes.point.Point;
 import shapes.rectangle.Rectangle;
 import shapes.square.Square;
+import strategy.open.LogDecoder;
+import strategy.open.OpenDrawing;
+import strategy.open.OpenLog;
+import strategy.open.OpenManager;
+import strategy.save.SaveDrawing;
+import strategy.save.SaveLog;
+import strategy.save.SaveManager;
+import sun.security.action.GetLongAction;
+import view.LoggerView;
 import view.OptionsView;
-
+import app.MainFrame;
 public class OptionsController {
 
 	private OptionsView optionsView;
 	private Shape shape;
 	private boolean isEndLinePoint = false;
 	private Point pStartLinePoint;
+	private LoggerView logView;
+	private MainFrame frame;
+	private SaveManager saveManager;
+	private int tempLog;
+	private OpenManager openManager;
+	private LogDecoder decodingLog = new LogDecoder();
+	
 	
 	public Shape getShapeOptions(MouseEvent e)
 	{
@@ -143,6 +162,12 @@ public class OptionsController {
 		this.optionsView = optionsView;
 	}
 
+	public void SetFrame(MainFrame frame) {
+		this.frame=frame;
+	}
+	public void SetLogView(LoggerView logView) {
+		this.logView=logView;
+	}
 
 	public void handleShapeChange() {
 		// change options depending on type of shape
@@ -236,6 +261,119 @@ public class OptionsController {
 		
 	
 	
+		
+	}
+	
+public void saveLog() {
+		
+		if(logView.getModel().isEmpty()) {
+			System.out.println("Log is empty");
+			return;
+		}
+
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("txt", "text");
+		chooser.setFileFilter(filter);
+		int answer = chooser.showSaveDialog(optionsView.getBtnSaveLog());
+				 if (answer == JFileChooser.APPROVE_OPTION) {
+					    File file = chooser.getSelectedFile();
+					 	String path = file.getAbsolutePath();		
+						System.out.println(path);
+						saveManager = new SaveManager(new SaveLog());
+						saveManager.save(frame, file);
+					
+						
+					} else if (answer == JFileChooser.CANCEL_OPTION) {
+						return;
+					} else if (answer == JFileChooser.ERROR_OPTION) {
+						System.out.println("Error while saving log");
+						
+					}
+		
+			
+	}
+	
+	public void saveDrawing() {
+		saveManager = new SaveManager(new SaveDrawing());
+		JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("ser","jpg", "jpeg", "png");
+		chooser.setFileFilter(filter);
+		int answer = chooser.showSaveDialog(optionsView.getBtnSaveDrawing());
+
+		if (answer == JFileChooser.APPROVE_OPTION) {
+
+			File file = chooser.getSelectedFile();
+			
+			String path = file.getAbsolutePath();
+			System.out.println(path);
+			saveManager = new SaveManager(new SaveDrawing());
+			saveManager.save(frame, file);
+		}
+		
+	}
+	
+	public void importLog() {
+		
+		JFileChooser chooser = new JFileChooser();
+		int answer = chooser.showSaveDialog(null);
+		if (answer == JFileChooser.OPEN_DIALOG) {
+			
+			if(!frame.getView().getModel().getLogList().isEmpty()) {
+				frame.getView().getModel().getLogList().clear();
+				this.tempLog = 0;
+			}
+
+			File file = chooser.getSelectedFile();
+		
+			String path = file.getAbsolutePath();
+			System.out.println(path);
+			openManager = new OpenManager(new OpenLog());
+			openManager.open(frame.getView().getModel(), frame, file);
+		
+			
+		} else if (answer == JFileChooser.CANCEL_OPTION) {
+			
+		} else if (answer == JFileChooser.ERROR_OPTION) {
+			
+		}
+				
+	}
+	
+	public void importDrawing() {
+		JFileChooser chooser = new JFileChooser();
+		int answer = chooser.showSaveDialog(frame.getOptionsView().getBtnSaveDrawing());
+		if (answer == JFileChooser.OPEN_DIALOG) {
+			
+			if(!frame.getView().getModel().getLogList().isEmpty()) {
+				frame.getView().getModel().getLogList().clear();
+				this.tempLog = 0;
+			}
+
+			File file = chooser.getSelectedFile();
+		
+			String path = file.getAbsolutePath();
+			System.out.println(path);
+			openManager = new OpenManager(new OpenDrawing());
+			openManager.open(frame.getView().getModel(), frame, file);
+			frame.repaint();
+		
+			
+		} else if (answer == JFileChooser.CANCEL_OPTION) {
+			
+		} else if (answer == JFileChooser.ERROR_OPTION) {
+			
+		}
+		
+	}
+	
+	//LOG NEXT LINE
+	public void logNextLine() {
+		
+		if(tempLog < frame.getView().getModel().getLogList().size()) {
+			
+			decodingLog.lineLogDecoding(frame, frame.getView().getModel(), tempLog);
+			tempLog++;
+		}
 		
 	}
 }

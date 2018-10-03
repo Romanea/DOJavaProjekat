@@ -48,7 +48,7 @@ public class MainFrame extends JFrame {
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}
-		setSize(800,500);
+		setSize(1200,550);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		// position on center of the screen
@@ -71,6 +71,8 @@ public class MainFrame extends JFrame {
 	private void events()
 	{
 		selectionMode=false;
+		this.optionsController.SetLogView(logView);
+		this.optionsController.SetFrame(this);
 		
 		// CANVAS DRAWING
 
@@ -106,15 +108,18 @@ public class MainFrame extends JFrame {
 				{
 					selectionMode = true;
 					//toolsController.handleSelection();
-					toolsView.getLblInfo().setText("Mode: Selection");
 					getOptionsView().setEnabled(false);
+					toolsView.getLblInfo().setText("Mode: Selection");
+
+					/*
+					toolsView.getLblInfo().setText("Mode: Selection");
 					toolsView.getBtnDeleteAll().setEnabled(false);
 					toolsView.getBtnDelete().setEnabled(true);
 					toolsView.getBtnModify().setEnabled(true);
 					toolsView.getBtnBringToBack().setEnabled(true);
 					toolsView.getBtnBringToFront().setEnabled(true);
 					toolsView.getBtnSendToBack().setEnabled(true);
-					toolsView.getBtnSendToFront().setEnabled(true);
+					toolsView.getBtnSendToFront().setEnabled(true);*/
 
 
 
@@ -123,15 +128,18 @@ public class MainFrame extends JFrame {
 				else if( ie.getStateChange() == ItemEvent.DESELECTED)
 				{
 					toolsController.handeDeselection();
-					toolsView.getLblInfo().setText(" Mode:  Drawing");
 					getOptionsView().setEnabled(true);
+					toolsView.getLblInfo().setText(" Mode:  Drawing");
+
+/*
+					toolsView.getLblInfo().setText(" Mode:  Drawing");
 					toolsView.getBtnDelete().setEnabled(false);
 					toolsView.getBtnModify().setEnabled(false);
 					toolsView.getBtnDeleteAll().setEnabled(true);
 					toolsView.getBtnBringToBack().setEnabled(false);
 					toolsView.getBtnBringToFront().setEnabled(false);
 					toolsView.getBtnSendToBack().setEnabled(false);
-					toolsView.getBtnSendToFront().setEnabled(false);
+					toolsView.getBtnSendToFront().setEnabled(false);*/
 					selectionMode = false;
 					
 				}
@@ -241,6 +249,61 @@ public class MainFrame extends JFrame {
 					
 				});
 				
+		//SAVE LOG
+				optionsView.getBtnSaveLog().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						optionsController.saveLog();
+					}
+					
+				});
+				
+		//SAVE DRAWING
+				optionsView.getBtnSaveDrawing().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						optionsController.saveDrawing();
+					}
+					
+				});
+				
+		//IMPORT LOG
+				optionsView.getBtnImportLog().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						optionsController.importLog();
+						
+					}
+					
+				});
+				
+		//IMPORT DRAWING
+				optionsView.getBtnImportDrawing().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						optionsController.importDrawing();
+					}
+					
+				});
+				
+		//LOG NEXT LINE
+				optionsView.getBtnLogNextLine().addActionListener( new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent arg0) {
+						// TODO Auto-generated method stub
+						optionsController.logNextLine();
+					}
+					
+				});
 	}
 	
 	public CanvasView getView() {

@@ -43,7 +43,7 @@ public class ToolsController {
 						frame.getView().getModel().getShape(i).setSelected(true);
 					}
 					
-					
+					frame.getView().getModel().notifyAllObservers();
 					frame.getView().repaint();
 					break;
 					
@@ -60,6 +60,7 @@ public class ToolsController {
 		
 		Iterator<Shape> it = frame.getView().getModel().getShapes().iterator();
 		while (it.hasNext()) it.next().setSelected(false);
+		frame.getView().getModel().notifyAllObservers();
 		frame.getView().repaint();
 		
 	}
@@ -71,6 +72,21 @@ public class ToolsController {
 		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
 			
 			if (frame.getView().getModel().getShapes().get(i).isSelected()) {
+				Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
+				cmd.execute();
+				frame.getView().getModel().getUndoStack().offerLast(cmd);
+
+			}
+			
+		}
+		frame.getView().repaint();
+	}
+	
+	public void handleDelete(Shape shape) {
+		
+		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
+			
+			if (frame.getView().getModel().getShapes().get(i).equals(shape)) {
 				Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
 				cmd.execute();
 				frame.getView().getModel().getUndoStack().offerLast(cmd);
@@ -204,6 +220,8 @@ public class ToolsController {
 			frame.repaint();
 		}
 	}
+	
+
 			
 	
 	

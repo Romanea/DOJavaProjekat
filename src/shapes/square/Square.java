@@ -2,13 +2,14 @@ package shapes.square;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.io.Serializable;
 
 import shapes.FilledShape;
 import shapes.Moveable;
 import shapes.line.Line;
 import shapes.point.Point;
 
-public class Square extends FilledShape implements Moveable{
+public class Square extends FilledShape implements Moveable, Serializable{
 	protected Point upperLeft;
 	protected int sideLength;
 	
@@ -44,7 +45,7 @@ public class Square extends FilledShape implements Moveable{
 		return diagonal().midpoint();
 	}
 	public String toString() {
-		return "upper left corner = (" + upperLeft.getX() + ", " + upperLeft.getY() + "), length of the side = " + sideLength;
+		return "Square: (" + this.upperLeft.getX() + "," + this.upperLeft.getY() + "); lengthSide:" + this.sideLength + "; outer color:" + getBorderColor().getRGB() + "; inside color:" + Integer.toString(getClrInnerColor().getRGB());
 	}
 
 	public boolean equals(Object obj) {
