@@ -34,7 +34,7 @@ public class Rectangle extends Square implements Serializable{
 	}
 	
 	public Line diagonal(){
-		return new Line(upperLeft, new Point(upperLeft.getX() + getSideLength(),upperLeft.getY() + width));
+		return new Line(upperLeft, new Point(upperLeft.getX() + getWidth(),upperLeft.getY() + sideLength));
 	}
 	public Point center(){
 		return diagonal().midpoint();
@@ -74,10 +74,10 @@ public class Rectangle extends Square implements Serializable{
 	public void selected(Graphics g) {
 		
 		g.setColor(Color.BLUE);
-		new Line(getUpperLeft(), new Point(getUpperLeft().getX()+sideLength, getUpperLeft().getY())).selected(g);
-		new Line(getUpperLeft(), new Point(getUpperLeft().getX(), getUpperLeft().getY()+width)).selected(g);
-		new Line(new Point(getUpperLeft().getX()+sideLength, getUpperLeft().getY()), diagonal().getpEnd()).selected(g);
-		new Line(new Point(getUpperLeft().getX(), getUpperLeft().getY()+width), diagonal().getpEnd()).selected(g);
+		new Line(getUpperLeft(), new Point(getUpperLeft().getX()+width, getUpperLeft().getY())).selected(g);
+		new Line(getUpperLeft(), new Point(getUpperLeft().getX(), getUpperLeft().getY()+sideLength)).selected(g);
+		new Line(new Point(getUpperLeft().getX()+width, getUpperLeft().getY()), diagonal().getpEnd()).selected(g);
+		new Line(new Point(getUpperLeft().getX(), getUpperLeft().getY()+sideLength), diagonal().getpEnd()).selected(g);
 	}
 	public void draw(Graphics g){
 		g.setColor(getBorderColor());
