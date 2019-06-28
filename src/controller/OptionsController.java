@@ -3,7 +3,6 @@ package controller;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -23,7 +22,6 @@ import strategy.open.OpenManager;
 import strategy.save.SaveDrawing;
 import strategy.save.SaveLog;
 import strategy.save.SaveManager;
-import sun.security.action.GetLongAction;
 import view.LoggerView;
 import view.OptionsView;
 import app.MainFrame;
