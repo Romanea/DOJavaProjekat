@@ -14,6 +14,11 @@ public abstract class Shape implements Comparable<Object>{
 	public Shape(String boja){
 		this.strColor = boja;
 	}
+	
+	public Shape(Color borderColor) {
+		this.borderColor = borderColor;
+	}
+	
 	public abstract void draw(Graphics g);
 	public abstract void selected(Graphics g);
 	public abstract boolean contains(int x, int y);
