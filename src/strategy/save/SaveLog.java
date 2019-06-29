@@ -15,9 +15,9 @@ public class SaveLog implements SaveStrategy {
 		try {
 			
 			FileWriter fileWriter = new FileWriter(file);
-			for(int i = 0; i < drawingFrame.getLogView().getModel().size(); i++)
+			for(int i = 0; i < drawingFrame.getLogView().getLogs().size(); i++)
 			{
-				fileWriter.write(drawingFrame.getLogView().getModel().getElementAt(i) + System.getProperty( "line.separator" ));
+				fileWriter.write(drawingFrame.getLogView().getLogs().getElementAt(i) + System.getProperty( "line.separator" ));
 				
 			}
 			fileWriter.close();

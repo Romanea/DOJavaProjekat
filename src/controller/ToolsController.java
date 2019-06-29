@@ -145,7 +145,7 @@ public class ToolsController {
 	
 	public void handleBringToFront() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		BringToFront cmd = new BringToFront(frame.getView().getModel(), frame.getLogView());
+		BringToFront cmd = new BringToFront(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 
@@ -159,7 +159,7 @@ public class ToolsController {
 	
 	public void handleBringToBack() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		BringToBack cmd = new BringToBack(frame.getView().getModel(), frame.getLogView());
+		BringToBack cmd = new BringToBack(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 
@@ -173,7 +173,7 @@ public class ToolsController {
 	
 	public void handleSendToFront() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		ToFront cmd = new ToFront(frame.getView().getModel(), frame.getLogView());
+		ToFront cmd = new ToFront(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 
@@ -187,7 +187,7 @@ public class ToolsController {
 	
 	public void handleSendToBack() {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
-		ToBack cmd = new ToBack(frame.getView().getModel(), frame.getLogView());
+		ToBack cmd = new ToBack(frame.getView().getModel());
 		cmd.execute();
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 

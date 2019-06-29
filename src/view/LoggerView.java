@@ -8,11 +8,14 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 
+import model.LogModel;
+
 @SuppressWarnings("serial")
 public class LoggerView extends JPanel {
 	private JScrollPane scrollPane;
-	private static JList<String> lstLogger;
-	private DefaultListModel<String> dlm;
+	
+	LogModel model = new LogModel();
+
 
 	/**
 	 * 
@@ -22,12 +25,11 @@ public class LoggerView extends JPanel {
 
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
-
-		lstLogger = new JList<String>();
-		scrollPane.setViewportView(lstLogger);
 		
-		dlm = new DefaultListModel<String>();
-		setDlm(dlm);
+		model.getLoggerList().setModel(model.getDlm());
+
+		scrollPane.setViewportView(model.getLoggerList());
+
 
 	}
 
@@ -35,18 +37,9 @@ public class LoggerView extends JPanel {
 		return scrollPane;
 	}
 
-	public DefaultListModel<String> getModel() {
-		return dlm;
+	public DefaultListModel<String> getLogs() {
+		return this.model.getDlm();
 	}
 
-	public void setDlm(DefaultListModel<String> dlm) {
-		this.dlm = dlm;
-		if (dlm != null) {
-			lstLogger.setModel(dlm);
-		}
-	}
 
-	public static JList<String> getLstLogger() {
-		return lstLogger;
-	}
 }

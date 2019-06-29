@@ -8,12 +8,10 @@ import shapes.Shape;
 public class ToBack implements Command {
 	
 	private ShapeModel model;
-	private LoggerView logView;
 	private Shape tmpShape;
 
-	public ToBack(ShapeModel drawingModel, LoggerView logView) {
+	public ToBack(ShapeModel drawingModel) {
 		this.model = drawingModel;
-		this.logView = logView;
 	}
 
 	@Override
@@ -25,7 +23,6 @@ public class ToBack implements Command {
 				tmpShape = model.getSelectedShapes().get(0);
 				model.getShapes().set(i, model.getShape(i-1));
 				model.getShapes().set(i-1, tmpShape);
-				logView.getModel().addElement("To back: " + tmpShape.toString());
 				return;
 				}
 				
@@ -43,9 +40,7 @@ public class ToBack implements Command {
 				
 				
 				model.getShapes().set(i, model.getShape(i+1));
-				model.getShapes().set(i+1, tmpShape);
-				logView.getModel().addElement("Undo to back: " + tmpShape.toString());
-			
+				model.getShapes().set(i+1, tmpShape);			
 				return;
 			}
 		}

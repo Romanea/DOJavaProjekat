@@ -8,13 +8,11 @@ import shapes.Shape;
 public class BringToFront implements Command {
 	
 	private ShapeModel model;
-	private LoggerView logView;
 	private Shape tmpShape;
 	private int indexOfShape;
 
-	public BringToFront(ShapeModel drawingModel, LoggerView logView ) {
+	public BringToFront(ShapeModel drawingModel ) {
 		this.model = drawingModel;
-		this.logView = logView;
 	}
 
 	@Override
@@ -27,7 +25,6 @@ public class BringToFront implements Command {
 				
 				model.getShapes().add(tmpShape);
 				model.remove(model.getShape(i));
-				logView.getModel().addElement("Bring to front: " + tmpShape.toString());
 				return;
 			}
 		}
@@ -46,10 +43,6 @@ public class BringToFront implements Command {
 		}
 		
 		model.getShapes().set(indexOfShape, tmpShape);
-		logView.getModel().addElement("Undo bring to front: " + tmpShape.toString());
-		
-		
-		
 
 	}
 

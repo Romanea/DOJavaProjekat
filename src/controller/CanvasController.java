@@ -35,7 +35,7 @@ public class CanvasController  {
 	public void makeNewDrawing() {
 		model.removeAllShapes();
     	frame.getView().repaint();
-    	frame.getLogView().getModel().clear();
+    	frame.getLogView().getLogs().clear();
 	}
 	
 	

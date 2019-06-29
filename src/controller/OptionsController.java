@@ -264,7 +264,7 @@ public class OptionsController {
 	
 public void saveLog() {
 		
-		if(logView.getModel().isEmpty()) {
+		if(logView.getLogs().isEmpty()) {
 			System.out.println("Log is empty");
 			return;
 		}
