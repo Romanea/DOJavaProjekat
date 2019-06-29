@@ -25,5 +25,9 @@ public class RemovePoint implements Command {
 		this.model.add(point);
 		
 	}
+	
+	public String toString() {
+		return "Remove: " + point.toString();
+	}
 
 }

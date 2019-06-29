@@ -24,5 +24,9 @@ public class RemoveSquare implements Command {
 	public void unexecute() {
 		this.model.add(square);
 	}
+	
+	public String toString() {
+		return "Remove: " + square.toString();
+	}
 
 }

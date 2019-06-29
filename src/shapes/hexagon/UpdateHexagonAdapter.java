@@ -47,6 +47,10 @@ public class UpdateHexagonAdapter implements Command{
 		
 
 	}
+	
+	public String toString() {
+		return "Update: " + original.toString()+ " to "+ newState.toString();
+	}
 
 }
 

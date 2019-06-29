@@ -44,5 +44,9 @@ public class UpdateRectangle implements Command {
 		original.setBorderColor(oldState.getBorderColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
 	}
+	
+	public String toString() {
+		return "Update: " + original.toString()+ " to "+ newState.toString();
+	}
 
 }

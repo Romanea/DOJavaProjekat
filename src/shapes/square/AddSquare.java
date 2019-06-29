@@ -26,5 +26,9 @@ public class AddSquare implements Command {
 		this.model.remove(square);
 		
 	}
+	
+	public String toString() {
+		return "Add: " + square.toString();
+	}
 
 }

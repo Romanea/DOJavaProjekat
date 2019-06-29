@@ -33,5 +33,9 @@ public class UpdatePoint implements Command {
 		original.setColor(oldState.getColor());
 		
 	}
+	
+	public String toString() {
+		return "Update: " + original.toString()+ " to "+ newState.toString();
+	}
 
 }

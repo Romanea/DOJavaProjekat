@@ -25,5 +25,9 @@ public class RemoveHexagonAdapter implements Command {
 		this.model.add(hexagon);
 		
 	}
+	
+	public String toString() {
+		return "Remove: " + hexagon.toString();
+	}
 
 }

@@ -25,5 +25,9 @@ public class RemoveRectangle implements Command {
 	public void unexecute() {
 		this.model.add(rectangle);
 	}
+	
+	public String toString() {
+		return "Remove: " + rectangle.toString();
+	}
 
 }

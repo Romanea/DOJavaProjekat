@@ -29,5 +29,9 @@ public class AddRectangle implements Command{
 
 		
 	}
+	
+	public String toString() {
+		return "Add: " + rectangle.toString();
+	}
 
 }

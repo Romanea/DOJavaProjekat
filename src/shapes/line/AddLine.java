@@ -27,5 +27,9 @@ public class AddLine implements Command{
 		this.model.remove(line);
 		
 	}
+	
+	public String toString() {
+		return "Add: " + line.toString();
+	}
 
 }

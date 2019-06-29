@@ -48,5 +48,10 @@ public class UpdateCircle implements Command{
 		original.setBorderColor(oldState.getBorderColor());
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "Update: " + original.toString()+ " to "+ newState.toString();
+	}
 
 }

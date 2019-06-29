@@ -40,5 +40,9 @@ public class UpdateSquare implements Command {
 		original.setClrInnerColor(oldState.getClrInnerColor());
 		
 	}
+	
+	public String toString() {
+		return "Update: " + original.toString()+ " to "+ newState.toString();
+	}
 
 }

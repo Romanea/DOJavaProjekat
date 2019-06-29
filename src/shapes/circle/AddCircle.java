@@ -25,5 +25,10 @@ public class AddCircle implements Command{
 		this.model.remove(circle);
 
 	}
+	
+	@Override
+	public String toString() {
+		return "Add: " + circle.toString();
+	}
 
 }
