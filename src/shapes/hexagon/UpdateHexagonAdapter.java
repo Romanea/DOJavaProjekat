@@ -11,14 +11,11 @@ public class UpdateHexagonAdapter implements Command{
 	private HexagonAdapter oldState = new HexagonAdapter(new Hexagon(0, 0, 0), Color.BLACK, Color.BLACK);
 	private HexagonAdapter original;
 	private HexagonAdapter newState;
-	private LoggerView log;
 
 
-
-	public UpdateHexagonAdapter(HexagonAdapter original, HexagonAdapter newState, LoggerView log) {
+	public UpdateHexagonAdapter(HexagonAdapter original, HexagonAdapter newState) {
 		this.original = original;
 		this.newState = newState;
-		this.log = log;
 
 		
 	}
@@ -37,7 +34,6 @@ public class UpdateHexagonAdapter implements Command{
 		original.setColor(newState.getColor());
 		original.setClrInnerColor(newState.getClrInnerColor());
 		
-		log.getModel().addElement("Update: " + original.toString()+ " to "+ newState.toString());
 
 	}
 
@@ -49,8 +45,6 @@ public class UpdateHexagonAdapter implements Command{
 		original.setColor(oldState.getColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
 		
-		log.getModel().addElement("Undo Update: " + original.toString()+ " to "+ newState.toString());
-
 
 	}
 

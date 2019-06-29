@@ -7,13 +7,11 @@ import view.LoggerView;
 public class AddRectangle implements Command{
 	private ShapeModel model;
 	private Rectangle rectangle;
-	private LoggerView log;
 
 	
-	public AddRectangle(ShapeModel model, Rectangle rectangle, LoggerView log) {
+	public AddRectangle(ShapeModel model, Rectangle rectangle) {
 		this.model = model;
 		this.rectangle = rectangle;
-		this.log = log;
 
 	}
 	
@@ -21,7 +19,6 @@ public class AddRectangle implements Command{
 	@Override
 	public void execute() {
 		this.model.add(rectangle);
-		log.getModel().addElement("Add: " + rectangle.toString());
 
 		
 	}
@@ -29,7 +26,6 @@ public class AddRectangle implements Command{
 	@Override
 	public void unexecute() {
 		this.model.remove(rectangle);
-		log.getModel().addElement("Undo Add: " + rectangle.toString());
 
 		
 	}

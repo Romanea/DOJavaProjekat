@@ -11,15 +11,11 @@ public class UpdateCircle implements Command{
 	private Circle oldState = new Circle(new Point(0,0), 0);
 	private Circle original;
 	private Circle newState;
-	private LoggerView log;
 
 	
-	public UpdateCircle(Circle original, Circle newState, LoggerView log) {
+	public UpdateCircle(Circle original, Circle newState) {
 		this.original = original;
 		this.newState = newState;
-		this.log = log;
-
-		
 	}
 	
 	@Override
@@ -41,9 +37,6 @@ public class UpdateCircle implements Command{
 		original.setClrInnerColor(newState.getClrInnerColor());
 		original.setBorderColor(newState.getBorderColor());
 		
-		log.getModel().addElement("Update: " + original.toString()+ " to "+ newState.toString());
-
-		
 	}
 
 	@Override
@@ -53,8 +46,6 @@ public class UpdateCircle implements Command{
 		original.setR(oldState.getR());
 		original.setClrInnerColor(oldState.getClrInnerColor());
 		original.setBorderColor(oldState.getBorderColor());
-		log.getModel().addElement("Undo Update: " + original.toString()+ " to "+ newState.toString());
-
 		
 	}
 

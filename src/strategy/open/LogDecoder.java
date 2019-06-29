@@ -31,8 +31,7 @@ public class LogDecoder {
 				if(fileLine.contains("Add")) {
 					drawingFrame.getCanvasController().draw(point);
 				} else if (fileLine.contains("Update")) {
-					UpdatePoint updatePointCommand = new UpdatePoint((Point)drawingModel.getSelectedShapes().get(0), point,
-							 drawingFrame.getLogView());
+					UpdatePoint updatePointCommand = new UpdatePoint((Point)drawingModel.getSelectedShapes().get(0), point);
 					updatePointCommand.execute();
 					drawingModel.getUndoStack().offerLast(updatePointCommand);
 				} else {
@@ -48,8 +47,7 @@ public class LogDecoder {
 				if(fileLine.contains("Add")) {
 					drawingFrame.getCanvasController().draw(line);
 				} else if (fileLine.contains("Update")) {
-					UpdateLine updateLineCommand = new UpdateLine((Line)drawingModel.getSelectedShapes().get(0), line,
-							 drawingFrame.getLogView());
+					UpdateLine updateLineCommand = new UpdateLine((Line)drawingModel.getSelectedShapes().get(0), line);
 					updateLineCommand.execute();
 					drawingModel.getUndoStack().offerLast(updateLineCommand);
 				} else {
@@ -73,8 +71,7 @@ public class LogDecoder {
 				}  else if (fileLine.contains("Update")) {
 					System.out.println(drawingModel.getSelectedShapes().get(0));
 					
-					UpdateCircle updateCircleCommand = new UpdateCircle((Circle)drawingModel.getSelectedShapes().get(0), circle,
-							 drawingFrame.getLogView());
+					UpdateCircle updateCircleCommand = new UpdateCircle((Circle)drawingModel.getSelectedShapes().get(0), circle);
 					updateCircleCommand.execute();
 					drawingModel.getUndoStack().offerLast(updateCircleCommand);
 					
@@ -93,8 +90,7 @@ public class LogDecoder {
 				if(fileLine.contains("Add")) {
 					drawingFrame.getCanvasController().draw(square);
 				}  else if (fileLine.contains("Update")) {
-					UpdateSquare updateSquareCommand = new UpdateSquare((Square)drawingModel.getSelectedShapes().get(0), square,
-							 drawingFrame.getLogView());
+					UpdateSquare updateSquareCommand = new UpdateSquare((Square)drawingModel.getSelectedShapes().get(0), square);
 					updateSquareCommand.execute();
 					drawingModel.getUndoStack().offerLast(updateSquareCommand);
 				} else {
@@ -113,8 +109,7 @@ public class LogDecoder {
 				if(fileLine.contains("Add")) {
 					drawingFrame.getCanvasController().draw(rectangle);
 				}  else if (fileLine.contains("Update")) {
-					UpdateRectangle updateRectangleCommand = new UpdateRectangle((Rectangle)drawingModel.getSelectedShapes().get(0), rectangle,
-							 drawingFrame.getLogView());
+					UpdateRectangle updateRectangleCommand = new UpdateRectangle((Rectangle)drawingModel.getSelectedShapes().get(0), rectangle);
 					updateRectangleCommand.execute();
 					drawingModel.getUndoStack().offerLast(updateRectangleCommand);
 				} else { checkFileLineCommand(rectangle, drawingFrame, fileLine, parts);
@@ -134,8 +129,7 @@ public class LogDecoder {
 				if(fileLine.contains("Add")) {
 					drawingFrame.getCanvasController().draw(hexagon);
 				} else if (fileLine.contains("Update")) {
-					UpdateHexagonAdapter updateHexagonCommand = new UpdateHexagonAdapter((HexagonAdapter)drawingModel.getSelectedShapes().get(0), hexagon,
-							 drawingFrame.getLogView());
+					UpdateHexagonAdapter updateHexagonCommand = new UpdateHexagonAdapter((HexagonAdapter)drawingModel.getSelectedShapes().get(0), hexagon);
 					updateHexagonCommand.execute();
 					drawingModel.getUndoStack().offerLast(updateHexagonCommand);
 				} else {

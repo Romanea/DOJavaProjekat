@@ -8,28 +8,23 @@ public class AddLine implements Command{
 	
 	private ShapeModel model;
 	private Line line;
-	private LoggerView log;
 
 	
-	public AddLine(ShapeModel model, Line line, LoggerView log) {
+	public AddLine(ShapeModel model, Line line) {
 		this.model = model;
 		this.line = line;
-		this.log = log;
 
 	}
 
 	@Override
 	public void execute() {
 		this.model.add(line);
-		log.getModel().addElement("Add: " + line.toString());
 
 	}
 
 	@Override
 	public void unexecute() {
 		this.model.remove(line);
-		log.getModel().addElement("Undo Add: " + line.toString());
-
 		
 	}
 

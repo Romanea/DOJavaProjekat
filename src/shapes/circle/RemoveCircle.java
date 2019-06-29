@@ -8,19 +8,16 @@ public class RemoveCircle implements Command {
 
 	private ShapeModel model;
 	private Circle circle;
-	private LoggerView log;
 
 	
-	public RemoveCircle(ShapeModel model, Circle circle, LoggerView log) {
+	public RemoveCircle(ShapeModel model, Circle circle) {
 		this.model =model;
 		this.circle=circle;
-		this.log = log;
 
 	}
 	@Override
 	public void execute() {
 		this.model.remove(circle);
-		log.getModel().addElement("Remove: " + circle.toString());
 
 		
 	}
@@ -28,7 +25,6 @@ public class RemoveCircle implements Command {
 	@Override
 	public void unexecute() {
 		this.model.add(circle);
-		log.getModel().addElement("Undo Remove: " + circle.toString());
 
 	}
 

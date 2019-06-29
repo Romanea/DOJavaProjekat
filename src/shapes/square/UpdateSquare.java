@@ -9,14 +9,11 @@ public class UpdateSquare implements Command {
 	private Square oldState = new Square(new Point(0,0), 0);
 	private Square original;
 	private Square newState;
-	private LoggerView log;
 
 	
-	public UpdateSquare(Square original, Square newState, LoggerView log) {
+	public UpdateSquare(Square original, Square newState) {
 		this.original = original;
 		this.newState = newState;
-		this.log = log;
-
 	}
 	
 	@Override
@@ -32,9 +29,6 @@ public class UpdateSquare implements Command {
 		original.setSideLength(newState.getSideLength());
 		original.setBorderColor(newState.getBorderColor());
 		original.setClrInnerColor(newState.getClrInnerColor());
-		
-		log.getModel().addElement("Update: " + original.toString()+ " to "+ newState.toString());
-
 	}
 
 	@Override
@@ -44,9 +38,6 @@ public class UpdateSquare implements Command {
 		original.setSideLength(oldState.getSideLength());
 		original.setBorderColor(oldState.getBorderColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
-		
-		log.getModel().addElement("Undo Update: " + original.toString()+ " to "+ newState.toString());
-
 		
 	}
 
