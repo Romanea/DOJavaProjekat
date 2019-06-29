@@ -4,6 +4,7 @@ package app;
 
 import controller.CanvasController;
 import controller.CommandController;
+import controller.LoggerController;
 import controller.ToolsController;
 import model.CommandModel;
 import model.ShapeModel;
@@ -24,6 +25,9 @@ public class DrawingApp {
 		frame.setToolsController(toolsController);
 		ButtonObserver buttonObserver = new ButtonObserver(frame.getToolsView());
 		model.addObserver(buttonObserver);
+		LoggerController logController = new LoggerController();
+		logController.setView(frame.getLogView());
+		frame.setLogController(logController);
 		}
 
 	

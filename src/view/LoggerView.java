@@ -8,13 +8,14 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JScrollPane;
 
-import model.LogModel;
 
 @SuppressWarnings("serial")
 public class LoggerView extends JPanel {
 	private JScrollPane scrollPane;
 	
-	LogModel model = new LogModel();
+	private DefaultListModel<String> dlm = new DefaultListModel<String>();
+	private JList<String> lstLogger = new JList<String>();
+	
 
 
 	/**
@@ -26,27 +27,22 @@ public class LoggerView extends JPanel {
 		scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
 		
-		model.getLoggerList().setModel(model.getDlm());
 
-		scrollPane.setViewportView(model.getLoggerList());
+		lstLogger.setModel(dlm);
+	    scrollPane.setViewportView(lstLogger);
+
 
 
 	}
 
-	public LogModel getModel() {
-		return model;
-	}
 
-	public void setModel(LogModel model) {
-		this.model = model;
-	}
 
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
 
 	public DefaultListModel<String> getLogs() {
-		return this.model.getDlm();
+		return dlm;
 	}
 
 

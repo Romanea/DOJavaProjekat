@@ -18,6 +18,7 @@ import javax.swing.UIManager;
 
 import controller.CanvasController;
 import controller.CommandController;
+import controller.LoggerController;
 import controller.OptionsController;
 import controller.ToolsController;
 import model.CommandModel;
@@ -37,7 +38,20 @@ public class MainFrame extends JFrame {
 	private OptionsView optionsView = new OptionsView();
 	private ToolsController toolsController;
 	private ToolsView toolsView= new ToolsView();
+	private LoggerController logController = new LoggerController();
 	private LoggerView logView = new LoggerView();
+
+	public LoggerController getLogController() {
+		return logController;
+	}
+
+	public void setLogController(LoggerController logController) {
+		this.logController = logController;
+	}
+
+	public void setLogView(LoggerView logView) {
+		this.logView = logView;
+	}
 
 	private CommandController commandController; 
 	private boolean selectionMode;
