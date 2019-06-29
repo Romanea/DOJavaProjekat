@@ -24,5 +24,9 @@ public class AddPoint implements Command {
 	public void unexecute() {
 		this.model.remove(point);
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Add: " + point.toString();
+	}
 }

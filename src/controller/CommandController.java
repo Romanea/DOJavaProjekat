@@ -19,12 +19,10 @@ import shapes.hexagon.*;
 public class CommandController {
 	private CommandModel model = new CommandModel();
 	private MainFrame frame;
-	private LoggerView log;
 	
-	public CommandController(CommandModel model, MainFrame frame, LoggerView log) {
+	public CommandController(CommandModel model, MainFrame frame) {
 		this.model = model;
 		this.frame = frame;
-		this.log = log;
 	}
 	
 	public Command generateAddCommand(Shape shape, ShapeModel shapeModel)

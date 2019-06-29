@@ -33,6 +33,14 @@ public class LoggerView extends JPanel {
 
 	}
 
+	public LogModel getModel() {
+		return model;
+	}
+
+	public void setModel(LogModel model) {
+		this.model = model;
+	}
+
 	public JScrollPane getScrollPane() {
 		return scrollPane;
 	}
