@@ -7,23 +7,24 @@ import shapes.Shape;
 
 public class ToFront implements Command {
 	
-	private ShapeModel drawingModel;
+	private ShapeModel model;
 	private Shape tmpShape;
 
 	public ToFront(ShapeModel drawingModel) {
-		this.drawingModel = drawingModel;
+		this.model = drawingModel;
 	}
 
 	@Override
 	public void execute() {
 		
-		for(int i = 0  ; i < drawingModel.getShapes().size()-1 ; i++) {
+		for(int i = 0  ; i < model.getShapes().size()-1 ; i++) {
 			
-			if(drawingModel.getShapes().get(i) == drawingModel.getSelectedShapes().get(0) ) {
+			if(model.getShapes().get(i) == model.getSelectedShapes().get(0)
+					&& model.isInFront(model.getShapes().get(i))) {
 				
-				tmpShape = drawingModel.getSelectedShapes().get(0);
-				drawingModel.getShapes().set(i, drawingModel.getShape(i+1));
-				drawingModel.getShapes().set(i+1, tmpShape);			
+				tmpShape = model.getSelectedShapes().get(0);
+				model.getShapes().set(i, model.getShape(i+1));
+				model.getShapes().set(i+1, tmpShape);			
 				return;
 			}
 		}
@@ -32,12 +33,12 @@ public class ToFront implements Command {
 
 	@Override
 	public void unexecute() {
-		for(int i = drawingModel.getShapes().size()-1  ; i > 0  ; i--) {
+		for(int i = model.getShapes().size()-1  ; i > 0  ; i--) {
 			
-			if(drawingModel.getShapes().get(i) == tmpShape ) {
+			if(model.getShapes().get(i) == tmpShape ) {
 				
-				drawingModel.getShapes().set(i, drawingModel.getShape(i-1));
-				drawingModel.getShapes().set(i-1, tmpShape);
+				model.getShapes().set(i, model.getShape(i-1));
+				model.getShapes().set(i-1, tmpShape);
 				return;
 				}
 				

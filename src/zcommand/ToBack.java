@@ -18,7 +18,8 @@ public class ToBack implements Command {
 	public void execute() {
 		for(int i = model.getShapes().size()-1  ; i > 0  ; i--) {
 		
-			if(model.getShapes().get(i) == model.getSelectedShapes().get(0) ) {
+			if(model.getShapes().get(i) == model.getSelectedShapes().get(0) 
+					&& model.isInBack(model.getShapes().get(i))) {
 				
 				tmpShape = model.getSelectedShapes().get(0);
 				model.getShapes().set(i, model.getShape(i-1));
@@ -48,7 +49,7 @@ public class ToBack implements Command {
 	
 	@Override
 	public String toString() {
-		return "To back: " + tmpShape.toString();
+			return "To back: " + tmpShape.toString();
 	}
 
 

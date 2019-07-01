@@ -20,7 +20,8 @@ public class BringToBack implements Command {
 		
 		
 		for(int i = 0 ; i < model.getShapes().size() ; i++) {
-			if(model.getShapes().get(i) == model.getSelectedShapes().get(0) ) {
+			if(model.getShapes().get(i) == model.getSelectedShapes().get(0) 
+					&& model.isInBack(model.getShapes().get(i))) {
 				tmpShape = model.getSelectedShapes().get(0);
 				for(int j=i ; j >=1 ; j--) {
 					

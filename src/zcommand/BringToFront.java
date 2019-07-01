@@ -19,7 +19,8 @@ public class BringToFront implements Command {
 	public void execute() {
 		
 		for(int i = 0 ; i < model.getShapes().size() ; i++) {
-			if(model.getShapes().get(i) == model.getSelectedShapes().get(0) ) {
+			if(model.getShapes().get(i) == model.getSelectedShapes().get(0)
+					&& model.isInFront(model.getShapes().get(i))) {
 				tmpShape = model.getSelectedShapes().get(0);
 				indexOfShape = i;
 				

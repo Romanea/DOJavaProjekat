@@ -67,6 +67,22 @@ public class ShapeModel implements Subject, Serializable{
 		return selectedShapes.size();
 	}
 	
+	public boolean isInBack(Shape s) {
+		if(this.getShapeIndex(s) == this.shapes.size()-1) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public boolean isInFront(Shape s) {	
+		if(this.getShapeIndex(s) == 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
 	@Override
 	public void addObserver(Observer observer) {
 		observers.add(observer);
