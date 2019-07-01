@@ -18,7 +18,7 @@ public class UpdateLine implements Command{
 
 	}
 	@Override
-	public void execute() {
+	public boolean execute() {
 		oldState.getpStart().setX(original.getpStart().getX());
 		oldState.getpStart().setY(original.getpStart().getY());
 		oldState.getpEnd().setX(original.getpEnd().getX());
@@ -30,16 +30,17 @@ public class UpdateLine implements Command{
 		original.getpEnd().setX(newState.getpEnd().getX());
 		original.getpEnd().setY(newState.getpEnd().getY());
 		original.setColor(newState.getColor());
+		return true;
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		original.getpStart().setX(oldState.getpStart().getX());
 		original.getpStart().setY(oldState.getpStart().getY());
 		original.getpEnd().setX(oldState.getpEnd().getX());
 		original.getpEnd().setY(oldState.getpEnd().getY());
 		original.setColor(oldState.getColor());
-		
+		return true;
 	}
 	
 	public String toString() {

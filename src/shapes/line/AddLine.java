@@ -17,15 +17,16 @@ public class AddLine implements Command{
 	}
 
 	@Override
-	public void execute() {
+	public boolean execute() {
 		this.model.add(line);
+		return true;
 
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		this.model.remove(line);
-		
+		return true;
 	}
 	
 	public String toString() {

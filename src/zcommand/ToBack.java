@@ -15,26 +15,26 @@ public class ToBack implements Command {
 	}
 
 	@Override
-	public void execute() {
+	public boolean execute() {
 		for(int i = model.getShapes().size()-1  ; i > 0  ; i--) {
 		
-			if(model.getShapes().get(i) == model.getSelectedShapes().get(0) 
-					&& model.isInBack(model.getShapes().get(i))) {
+			if(model.getShapes().get(i) == model.getSelectedShapes().get(0) ) {
 				
 				tmpShape = model.getSelectedShapes().get(0);
 				model.getShapes().set(i, model.getShape(i-1));
 				model.getShapes().set(i-1, tmpShape);
-				return;
+				return true;
 				}
 				
 			}
+		return false;
 		}
 	
 
 	
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		for(int i = 0  ; i < model.getShapes().size()-1 ; i++) {
 	
 			if(model.getShapes().get(i) == tmpShape ) {
@@ -42,9 +42,10 @@ public class ToBack implements Command {
 				
 				model.getShapes().set(i, model.getShape(i+1));
 				model.getShapes().set(i+1, tmpShape);			
-				return;
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	@Override

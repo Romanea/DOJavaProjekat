@@ -16,14 +16,15 @@ public class RemovePoint implements Command {
 		this.point = point;
 	}
 	@Override
-	public void execute() {
+	public boolean execute() {
 		this.model.remove(point);
+		return true;
 }
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		this.model.add(point);
-		
+		return true;
 	}
 	
 	public String toString() {

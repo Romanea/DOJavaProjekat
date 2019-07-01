@@ -16,15 +16,15 @@ public class AddSquare implements Command {
 
 	}
 	@Override
-	public void execute() {
+	public boolean execute() {
 		this.model.add(square);
-
+		return true;
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		this.model.remove(square);
-		
+		return true;
 	}
 	
 	public String toString() {

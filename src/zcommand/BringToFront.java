@@ -16,25 +16,26 @@ public class BringToFront implements Command {
 	}
 
 	@Override
-	public void execute() {
+	public boolean execute() {
 		
 		for(int i = 0 ; i < model.getShapes().size() ; i++) {
-			if(model.getShapes().get(i) == model.getSelectedShapes().get(0)
-					&& model.isInFront(model.getShapes().get(i))) {
+			if(model.getShapes().get(i) == model.getSelectedShapes().get(0)) {
 				tmpShape = model.getSelectedShapes().get(0);
 				indexOfShape = i;
 				
 				model.getShapes().add(tmpShape);
 				model.remove(model.getShape(i));
-				return;
+				return true;
 			}
 		}
+		
+		return false;
 		
 
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 	
 		
 		
@@ -44,7 +45,7 @@ public class BringToFront implements Command {
 		}
 		
 		model.getShapes().set(indexOfShape, tmpShape);
-
+		return true;
 	}
 	
 	@Override

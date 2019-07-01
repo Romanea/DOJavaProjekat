@@ -17,13 +17,15 @@ public class RemoveRectangle implements Command {
 	
 	}
 	@Override
-	public void execute() {
+	public boolean execute() {
 		this.model.remove(rectangle);
+		return true;
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		this.model.add(rectangle);
+		return true;
 	}
 	
 	public String toString() {

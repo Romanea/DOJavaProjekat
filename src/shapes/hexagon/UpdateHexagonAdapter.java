@@ -21,7 +21,7 @@ public class UpdateHexagonAdapter implements Command{
 	}
 
 	@Override
-	public void execute() {
+	public boolean execute() {
 		oldState.getHexagon().setX(original.getHexagon().getX());
 		oldState.getHexagon().setY(original.getHexagon().getY());
 		oldState.getHexagon().setR(original.getHexagon().getR());
@@ -33,18 +33,18 @@ public class UpdateHexagonAdapter implements Command{
 		original.getHexagon().setR(newState.getHexagon().getR());
 		original.setColor(newState.getColor());
 		original.setClrInnerColor(newState.getClrInnerColor());
-		
+		return true;
 
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		original.getHexagon().setX(oldState.getHexagon().getX());
 		original.getHexagon().setY(oldState.getHexagon().getY());
 		original.getHexagon().setR(oldState.getHexagon().getR());
 		original.setColor(oldState.getColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
-		
+		return true;
 
 	}
 	

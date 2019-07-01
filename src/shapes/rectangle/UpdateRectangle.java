@@ -18,7 +18,7 @@ public class UpdateRectangle implements Command {
 	}
 
 	@Override
-	public void execute() {
+	public boolean execute() {
 		oldState.getUpperLeft().setX(original.getUpperLeft().getX());
 		oldState.getUpperLeft().setY(original.getUpperLeft().getY());
 		oldState.setSideLength(original.getSideLength());
@@ -32,17 +32,18 @@ public class UpdateRectangle implements Command {
 		original.setWidth(newState.getWidth());
 		original.setBorderColor(newState.getBorderColor());
 		original.setClrInnerColor(newState.getClrInnerColor());
-		
+		return true;
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		original.getUpperLeft().setX(oldState.getUpperLeft().getX());
 		original.getUpperLeft().setY(oldState.getUpperLeft().getY());
 		original.setSideLength(oldState.getSideLength());
 		original.setWidth(oldState.getWidth());
 		original.setBorderColor(oldState.getBorderColor());
 		original.setClrInnerColor(oldState.getClrInnerColor());
+		return true;
 	}
 	
 	public String toString() {

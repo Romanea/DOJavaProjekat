@@ -16,17 +16,17 @@ public class AddHexagonAdapter implements Command {
 
 	}
 	
-	public void execute() {
+	public boolean execute() {
 		
 		this.model.add(hexagon);
-
+		return true;
 		
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		this.model.remove(hexagon);
-		
+		return true;
 	}
 	
 	public String toString() {

@@ -15,7 +15,7 @@ public class UpdatePoint implements Command {
 	}	
 	
 	@Override
-	public void execute() {
+	public boolean execute() {
 		oldState.setX(original.getX());
 		oldState.setY(original.getY());
 		oldState.setColor(original.getColor());
@@ -23,15 +23,16 @@ public class UpdatePoint implements Command {
 		original.setX(newState.getX());
 		original.setY(newState.getY());
 		original.setColor(newState.getColor());
+		return true;
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 
 		original.setX(oldState.getX());
 		original.setY(oldState.getY());
 		original.setColor(oldState.getColor());
-		
+		return true;
 	}
 	
 	public String toString() {

@@ -16,13 +16,15 @@ public class AddPoint implements Command {
 	}
 	
 	@Override
-	public void execute() {
+	public boolean execute() {
 		this.model.add(point);
+		return true;
 	}
 
 	@Override
-	public void unexecute() {
+	public boolean unexecute() {
 		this.model.remove(point);
+		return true;
 	}
 	
 	@Override
