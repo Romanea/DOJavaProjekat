@@ -43,5 +43,10 @@ public class BringToBack implements Command {
 		model.getShapes().set(indexOfShape, tmpShape);
 
 	}
+	
+	@Override
+	public String toString() {
+		return "Bring to back: " + tmpShape.toString();
+	}
 
 }

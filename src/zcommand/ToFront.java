@@ -43,5 +43,11 @@ public class ToFront implements Command {
 				
 			}
 	}
+	
+	@Override
+	public String toString() {
+		return "To front: " + tmpShape.toString();
+	}
+
 
 }

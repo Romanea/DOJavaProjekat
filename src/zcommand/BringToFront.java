@@ -45,5 +45,11 @@ public class BringToFront implements Command {
 		model.getShapes().set(indexOfShape, tmpShape);
 
 	}
+	
+	@Override
+	public String toString() {
+		return "Bring to front: " + tmpShape.toString();
+	}
+
 
 }

@@ -74,6 +74,7 @@ public class ToolsController {
 			if (frame.getView().getModel().getShapes().get(i).isSelected()) {
 				Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
 				cmd.execute();
+				frame.getLogController().logCommand(cmd);
 				frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 			}
@@ -89,6 +90,7 @@ public class ToolsController {
 			if (frame.getView().getModel().getShapes().get(i).equals(shape)) {
 				Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
 				cmd.execute();
+				frame.getLogController().logCommand(cmd);
 				frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 			}
@@ -105,6 +107,7 @@ public class ToolsController {
 		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
 			Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
 			cmd.execute();
+			frame.getLogController().logCommand(cmd);
 			frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 				
@@ -123,6 +126,7 @@ public class ToolsController {
 					if (frame.getView().getModel().getShapes().get(i).isSelected()) {
 						Command cmd = frame.getCommandController().generateUpdateCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
 						cmd.execute();
+						frame.getLogController().logCommand(cmd);
 						frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 					}
@@ -147,6 +151,7 @@ public class ToolsController {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToFront cmd = new BringToFront(frame.getView().getModel());
 		cmd.execute();
+		frame.getLogController().logCommand(cmd);
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 		frame.getView().repaint();
@@ -161,6 +166,7 @@ public class ToolsController {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToBack cmd = new BringToBack(frame.getView().getModel());
 		cmd.execute();
+		frame.getLogController().logCommand(cmd);
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 		frame.getView().repaint();
@@ -175,6 +181,7 @@ public class ToolsController {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		ToFront cmd = new ToFront(frame.getView().getModel());
 		cmd.execute();
+		frame.getLogController().logCommand(cmd);
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 		frame.getView().repaint();
@@ -189,6 +196,7 @@ public class ToolsController {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		ToBack cmd = new ToBack(frame.getView().getModel());
 		cmd.execute();
+		frame.getLogController().logCommand(cmd);
 		frame.getView().getModel().getUndoStack().offerLast(cmd);
 
 		frame.getView().repaint();
@@ -203,7 +211,9 @@ public class ToolsController {
 		
 		if (!frame.getView().getModel().getUndoStack().isEmpty()) {
 			Command previousCommand = frame.getView().getModel().getUndoStack().pollLast();
+			System.out.println("Undo-> " + previousCommand.toString());
 			previousCommand.unexecute();
+			frame.getLogController().logCommand("Undo: ", previousCommand);
 			frame.getView().getModel().getRedoStack().offerLast(previousCommand);
 			frame.repaint();
 		}
@@ -217,6 +227,8 @@ public class ToolsController {
 			Command previousCommand = frame.getView().getModel().getRedoStack().pollLast();
 			frame.getView().getModel().getUndoStack().offerLast(previousCommand);
 			previousCommand.execute();
+			System.out.println("Redo-> " + previousCommand.toString());
+			frame.getLogController().logCommand("Redo: ", previousCommand);
 			frame.repaint();
 		}
 	}

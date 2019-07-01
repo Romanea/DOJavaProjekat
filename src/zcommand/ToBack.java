@@ -44,7 +44,12 @@ public class ToBack implements Command {
 				return;
 			}
 		}
-
 	}
+	
+	@Override
+	public String toString() {
+		return "To back: " + tmpShape.toString();
+	}
+
 
 }

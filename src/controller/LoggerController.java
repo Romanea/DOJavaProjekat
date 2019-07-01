@@ -20,4 +20,9 @@ public class LoggerController {
 		view.getLogs().addElement(cmd.toString());
 		//System.out.println(cmd.toString());
 	}
+	
+	// for UNDO and REDO
+	public void logCommand(String option, Command cmd) {
+		view.getLogs().addElement(option + cmd.toString());
+	}
 }

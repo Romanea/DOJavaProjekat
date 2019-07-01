@@ -29,6 +29,7 @@ public class CanvasController  {
 	public void draw(Shape shape) {
 		Command cmd = frame.getCommandController().generateAddCommand(shape, model);
 		cmd.execute();
+		frame.getLogController().logCommand(cmd);
     	frame.getView().repaint();
 
 	}
