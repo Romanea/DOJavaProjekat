@@ -85,7 +85,6 @@ public class MainFrame extends JFrame {
 	private void events()
 	{
 		selectionMode=false;
-		this.optionsController.SetLogView(logView);
 		this.optionsController.SetFrame(this);
 		
 		// CANVAS DRAWING

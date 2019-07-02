@@ -116,7 +116,7 @@ public class HexagonAdapter extends FilledShape  implements Moveable, Serializab
 		if (o instanceof HexagonAdapter) {
 			return hexagon.getR() - ((HexagonAdapter) o).getHexagon().getR();
 		}
-		return 0;		
+		return -1;		
 	}
 	
 

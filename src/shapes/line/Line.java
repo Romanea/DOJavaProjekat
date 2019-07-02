@@ -103,7 +103,7 @@ public class Line extends Shape implements Serializable{
 			return (int)this.length() - (int)helper.length();
 		}
 		else
-			return 0;
+			return -1;
 	}
 	public Point getpStart() {
 		return pStart;

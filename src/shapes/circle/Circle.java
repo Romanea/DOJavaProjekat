@@ -104,7 +104,7 @@ public class Circle extends FilledShape implements Moveable, Serializable{
 			return this.r - pomocni.r;
 		}
 		else
-			return 0;
+			return -1;
 	}
 	public Point getCenter() {
 		return center;

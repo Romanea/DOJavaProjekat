@@ -31,7 +31,6 @@ public class OptionsController {
 	private Shape shape;
 	private boolean isEndLinePoint = false;
 	private Point pStartLinePoint;
-	private LoggerView logView;
 	private MainFrame frame;
 	private SaveManager saveManager;
 	private int tempLog;
@@ -169,9 +168,7 @@ public class OptionsController {
 	public void SetFrame(MainFrame frame) {
 		this.frame=frame;
 	}
-	public void SetLogView(LoggerView logView) {
-		this.logView=logView;
-	}
+
 
 	public void handleShapeChange() {
 		// change options depending on type of shape
@@ -270,7 +267,7 @@ public class OptionsController {
 	
 public void saveLog() {
 		
-		if(logView.getLogs().isEmpty()) {
+		if(frame.getLogView().getLogs().isEmpty()) {
 			System.out.println("Log is empty");
 			return;
 		}

@@ -11,22 +11,20 @@ import zcommand.*;
 
 public class ToolsController {
 
-	private ToolsView toolsView;
 	private MainFrame frame;
 	
 
 	public ToolsController(MainFrame frame) {
-		this.toolsView = frame.getToolsView();
 		this.frame=frame;
 	}
 	
 	// SELECT
 
 	public void handleSelection(MouseEvent arg0) {
-		if( frame.getView().getModel().getShapes().size() ==0 && toolsView.getTglbtnSelect().isSelected())
+		if( frame.getView().getModel().getShapes().size() ==0 &&  frame.getToolsView().getTglbtnSelect().isSelected())
 		{
 			JOptionPane.showMessageDialog(null, "No elements to select!");
-			toolsView.getTglbtnSelect().setSelected(false);
+			 frame.getToolsView().getTglbtnSelect().setSelected(false);
 		}
 		else
 		{
@@ -79,18 +77,18 @@ public class ToolsController {
 					frame.getView().getModel().notifyAllObservers();
 				}
 
-
 			}
 			
 		}
 		frame.getView().repaint();
 	}
 	
+	// DELETE SHAPE WITHOUT SELECTION -- FOR LOGGING
 	public void handleDelete(Shape shape) {
 		
 		for (int i = frame.getView().getModel().getShapes().size() - 1; i >= 0; i--) {
-			
 			if (frame.getView().getModel().getShapes().get(i).equals(shape)) {
+				System.out.println("FOUND IT");
 				Command cmd = frame.getCommandController().generateRemoveCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
 				if(cmd.execute()) {
 					frame.getLogController().logCommand(cmd);
@@ -158,7 +156,6 @@ public class ToolsController {
 	// BRING TO FRONT
 	
 	public void handleBringToFront() {
-		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToFront cmd = new BringToFront(frame.getView().getModel());
 		if(cmd.execute()) {
 			frame.getLogController().logCommand(cmd);
@@ -166,15 +163,12 @@ public class ToolsController {
 			frame.getView().getModel().notifyAllObservers();
 		}
 		frame.getView().repaint();
-		}else {
-			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
-		}
+		
 	}
 			
 	// BRING TO BACK
 	
 	public void handleBringToBack() {
-		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToBack cmd = new BringToBack(frame.getView().getModel());
 		if(cmd.execute()) {
 			frame.getLogController().logCommand(cmd);
@@ -182,15 +176,12 @@ public class ToolsController {
 			frame.getView().getModel().notifyAllObservers();
 		}
 		frame.getView().repaint();
-		}else {
-			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
-		}
+		
 	}
 			
 	// SEND TO FRONT
 	
 	public void handleSendToFront() {
-		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		ToFront cmd = new ToFront(frame.getView().getModel());
 		if(cmd.execute()) {
 			frame.getLogController().logCommand(cmd);
@@ -200,15 +191,12 @@ public class ToolsController {
 
 
 		frame.getView().repaint();
-		}else {
-			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
-		}
+		
 	}
 			
 	// SEND TO BACK
 	
 	public void handleSendToBack() {
-		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		ToBack cmd = new ToBack(frame.getView().getModel());
 		if(cmd.execute()) {
 			frame.getLogController().logCommand(cmd);
@@ -216,9 +204,7 @@ public class ToolsController {
 			frame.getView().getModel().notifyAllObservers();
 		}
 		frame.getView().repaint();
-		}else {
-			JOptionPane.showMessageDialog(null, "You need to select shape!", "Error!!", JOptionPane.ERROR_MESSAGE);
-		}
+		
 	}
 	
 	//UNDO

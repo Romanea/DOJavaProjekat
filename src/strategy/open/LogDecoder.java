@@ -22,7 +22,7 @@ public class LogDecoder {
 
 			int x = Integer.parseInt(parts[0].substring(parts[0].indexOf("(")+1, parts[0].indexOf(",")));
 			int y = Integer.parseInt(parts[0].substring(parts[0].indexOf(",")+1, parts[0].indexOf(")")));
-			
+			System.out.println(fileLine);
 			if(fileLine.contains("Point")) {
 			
 				String[] color = parts[1].split(":");
@@ -143,11 +143,11 @@ public class LogDecoder {
 		}
 		
 		public void checkFileLineCommand(Shape shape, MainFrame drawingFrame, String fileLine, String[] parts) {
-			
+			System.out.println("check " + fileLine);
 			if (fileLine.contains("Undo")) {
 				drawingFrame.getToolsController().handleUndo();
 				
-			} else if (fileLine.contains("Delete")) {
+			} else if (fileLine.contains("Remove")) {
 				drawingFrame.getToolsController().handleDelete(shape);
 			}  else if (fileLine.contains("To back")) {
 				drawingFrame.getToolsController().handleSendToBack();
