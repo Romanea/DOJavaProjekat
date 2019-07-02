@@ -69,7 +69,6 @@ public class MainFrame extends JFrame {
 		setLocation((Toolkit.getDefaultToolkit().getScreenSize().width) / 2 - getWidth() / 2,
 				(Toolkit.getDefaultToolkit().getScreenSize().height) / 2 - getHeight() / 2);
 		setTitle("Design Patterns Project - Romanic Andrea IT20-2015");
-		optionsController.setOptionsView(optionsView);
 		getContentPane().add(view, BorderLayout.CENTER);
 		getContentPane().add(optionsView, BorderLayout.NORTH);
 		getContentPane().add(toolsView, BorderLayout.WEST);
