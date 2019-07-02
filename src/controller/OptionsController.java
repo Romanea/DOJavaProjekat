@@ -51,13 +51,15 @@ public class OptionsController {
 		
 		case "Line": {
 			if(!isEndLinePoint) {
-				pStartLinePoint = new Point(e.getX(), e.getY());
+				pStartLinePoint = new Point(e.getX(), e.getY(), optionsView.getBtnBorderColorPicker().getSelectedColor());
 				isEndLinePoint = true;
+				shape = pStartLinePoint;
 				JOptionPane.showMessageDialog(null, "Click on the line ending point!");
 				
 			}
 			else {
-				shape = new Line(pStartLinePoint, new Point(e.getX(), e.getY()));
+				shape = new Line(pStartLinePoint, new Point(e.getX(), e.getY(), optionsView.getBtnBorderColorPicker().getSelectedColor()), optionsView.getBtnBorderColorPicker().getSelectedColor());
+				frame.getView().getModel().remove(pStartLinePoint);
 				isEndLinePoint = false;
 			}
 		};break;
