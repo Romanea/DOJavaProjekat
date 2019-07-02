@@ -37,6 +37,7 @@ public class OptionsController {
 	private int tempLog;
 	private OpenManager openManager;
 	private LogDecoder decodingLog = new LogDecoder();
+	private boolean isFirstLine = true;
 	
 	
 	public Shape getShapeOptions(MouseEvent e)
@@ -54,7 +55,10 @@ public class OptionsController {
 				pStartLinePoint = new Point(e.getX(), e.getY(), optionsView.getBtnBorderColorPicker().getSelectedColor());
 				isEndLinePoint = true;
 				shape = pStartLinePoint;
-				JOptionPane.showMessageDialog(null, "Click on the line ending point!");
+				if(this.isFirstLine) {
+					JOptionPane.showMessageDialog(null, "Click on the line ending point!");
+					this.isFirstLine = false;
+				}
 				
 			}
 			else {
