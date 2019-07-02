@@ -85,7 +85,7 @@ public class ShapeModel implements Subject, Serializable{
 		
 		for (Observer observer : observers) {
 			countSelectedShapes();
-			observer.update(selectedShapes.size());
+			observer.update(selectedShapes.size(), undoStack.size(), redoStack.size());
 		
 		}
 	

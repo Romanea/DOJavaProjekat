@@ -76,6 +76,7 @@ public class ToolsController {
 				if(cmd.execute()) {
 					frame.getLogController().logCommand(cmd);
 					frame.getView().getModel().getUndoStack().offerLast(cmd);
+					frame.getView().getModel().notifyAllObservers();
 				}
 
 
@@ -94,6 +95,7 @@ public class ToolsController {
 				if(cmd.execute()) {
 					frame.getLogController().logCommand(cmd);
 					frame.getView().getModel().getUndoStack().offerLast(cmd);
+					frame.getView().getModel().notifyAllObservers();
 				}
 
 
@@ -113,6 +115,7 @@ public class ToolsController {
 			if(cmd.execute()) {
 				frame.getLogController().logCommand(cmd);
 				frame.getView().getModel().getUndoStack().offerLast(cmd);
+				frame.getView().getModel().notifyAllObservers();
 			}
 
 
@@ -132,8 +135,9 @@ public class ToolsController {
 					if (frame.getView().getModel().getShapes().get(i).isSelected()) {
 						Command cmd = frame.getCommandController().generateUpdateCommand(frame.getView().getModel().getShapes().get(i), frame.getView().getModel());
 						if(cmd.execute()) {
-						frame.getLogController().logCommand(cmd);
-						frame.getView().getModel().getUndoStack().offerLast(cmd);
+							frame.getLogController().logCommand(cmd);
+							frame.getView().getModel().getUndoStack().offerLast(cmd);
+							frame.getView().getModel().notifyAllObservers();
 						}
 					}
 					
@@ -157,8 +161,9 @@ public class ToolsController {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToFront cmd = new BringToFront(frame.getView().getModel());
 		if(cmd.execute()) {
-		frame.getLogController().logCommand(cmd);
-		frame.getView().getModel().getUndoStack().offerLast(cmd);
+			frame.getLogController().logCommand(cmd);
+			frame.getView().getModel().getUndoStack().offerLast(cmd);
+			frame.getView().getModel().notifyAllObservers();
 		}
 		frame.getView().repaint();
 		}else {
@@ -172,8 +177,9 @@ public class ToolsController {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		BringToBack cmd = new BringToBack(frame.getView().getModel());
 		if(cmd.execute()) {
-		frame.getLogController().logCommand(cmd);
-		frame.getView().getModel().getUndoStack().offerLast(cmd);
+			frame.getLogController().logCommand(cmd);
+			frame.getView().getModel().getUndoStack().offerLast(cmd);
+			frame.getView().getModel().notifyAllObservers();
 		}
 		frame.getView().repaint();
 		}else {
@@ -189,6 +195,7 @@ public class ToolsController {
 		if(cmd.execute()) {
 			frame.getLogController().logCommand(cmd);
 			frame.getView().getModel().getUndoStack().offerLast(cmd);
+			frame.getView().getModel().notifyAllObservers();
 		}
 
 
@@ -204,8 +211,9 @@ public class ToolsController {
 		if (frame.getView().getModel().countSelectedShapes()!=0) {
 		ToBack cmd = new ToBack(frame.getView().getModel());
 		if(cmd.execute()) {
-		frame.getLogController().logCommand(cmd);
-		frame.getView().getModel().getUndoStack().offerLast(cmd);
+			frame.getLogController().logCommand(cmd);
+			frame.getView().getModel().getUndoStack().offerLast(cmd);
+			frame.getView().getModel().notifyAllObservers();
 		}
 		frame.getView().repaint();
 		}else {
@@ -219,10 +227,10 @@ public class ToolsController {
 		
 		if (!frame.getView().getModel().getUndoStack().isEmpty()) {
 			Command previousCommand = frame.getView().getModel().getUndoStack().pollLast();
-			System.out.println("Undo-> " + previousCommand.toString());
-			if(previousCommand.execute()) {
+			if(previousCommand.unexecute()) {
 			frame.getLogController().logCommand("Undo: ", previousCommand);
 			frame.getView().getModel().getRedoStack().offerLast(previousCommand);
+			frame.getView().getModel().notifyAllObservers();
 			}
 			frame.repaint();
 		}
@@ -236,8 +244,8 @@ public class ToolsController {
 			Command previousCommand = frame.getView().getModel().getRedoStack().pollLast();
 			frame.getView().getModel().getUndoStack().offerLast(previousCommand);
 			if(previousCommand.execute()) {
-			System.out.println("Redo-> " + previousCommand.toString());
 			frame.getLogController().logCommand("Redo: ", previousCommand);
+			frame.getView().getModel().notifyAllObservers();
 			}
 			frame.repaint();
 		}

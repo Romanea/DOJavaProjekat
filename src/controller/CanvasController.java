@@ -22,16 +22,18 @@ public class CanvasController  {
 	public void mousePressed(MouseEvent e, Shape shape) {
 		Command cmd = frame.getCommandController().generateAddCommand(shape, model);
 		if(cmd.execute()) {
-		frame.getLogController().logCommand(cmd); // TEST
-		model.getUndoStack().offerLast(cmd);
+			frame.getLogController().logCommand(cmd); // TEST
+			model.getUndoStack().offerLast(cmd);
+			frame.getView().getModel().notifyAllObservers();
 		}
 	}
 	
 	public void draw(Shape shape) {
 		Command cmd = frame.getCommandController().generateAddCommand(shape, model);
 		if(cmd.execute()) {
-		frame.getLogController().logCommand(cmd);
-    	frame.getView().repaint();
+			frame.getView().getModel().notifyAllObservers();
+			frame.getLogController().logCommand(cmd);
+	    	frame.getView().repaint();
 		}
 
 	}

@@ -2,5 +2,7 @@ package shapes.observer;
 
 public interface Observer {
 
-	public void update(int numberOfSelectedShapes);
+
+
+	void update(int numberOfSelectedShapes, int undoStackSize, int redoStackSize);
 }

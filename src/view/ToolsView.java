@@ -143,6 +143,7 @@ public class ToolsView extends JPanel{
 		add(btnSendToBack, gbc_sendToBack);
 		
 		btnUndo = new JButton("Undo");
+		btnUndo.setEnabled(false);
 		gbc_undo = new GridBagConstraints();
 		gbc_undo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_undo.insets = new Insets(0, 0, 0, 5);
@@ -151,6 +152,7 @@ public class ToolsView extends JPanel{
 		add(btnUndo, gbc_undo);
 		
 		btnRedo = new JButton("Redo");
+		btnRedo.setEnabled(false);
 		gbc_redo = new GridBagConstraints();
 		gbc_redo.fill = GridBagConstraints.HORIZONTAL;
 		gbc_redo.insets = new Insets(0, 0, 0, 5);
